@@ -455,8 +455,7 @@ const Footer = () => {
           {/* Bottom Section: Divider & Copyright */}
           <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-500 text-[13px] font-medium">
-              Â© {new Date().getFullYear()} nexturn precision Pvt. Ltd. All
-              rights reserved.
+              © Nexturn Componentcraft Pvt. Ltd. All rights reserved.
             </p>
             <div className="flex items-center gap-8">
               <Link

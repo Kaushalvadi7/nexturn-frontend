@@ -145,7 +145,10 @@ const Capabilities = () => {
           </div>
         </div>
 
-        <div id="capabilities" className="scroll-mt-24 reveal-on-scroll reveal-hidden text-center mb-8 lg:mb-10 max-w-5xl mx-auto">
+        <div
+          id="capabilities"
+          className="scroll-mt-24 reveal-on-scroll reveal-hidden text-center mb-8 lg:mb-10 max-w-5xl mx-auto"
+        >
           <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
             Manufacturing Capabilities
           </h2>
@@ -226,10 +229,11 @@ const Capabilities = () => {
                 Precision Engineering for International Standards
               </h2>
               <p className="text-slate-600 leading-relaxed">
-               Our facility is equipped with high-performance automated machinery 
-               and advanced tooling systems to ensure consistent quality across every 
-               production run. We maintain strict process controls and full documentation 
-               to provide the total traceability required by global supply chains.
+                Our facility is equipped with high-performance automated
+                machinery and advanced tooling systems to ensure consistent
+                quality across every production run. We maintain strict process
+                controls and full documentation to provide the total
+                traceability required by global supply chains.
               </p>
             </div>
 
@@ -266,9 +270,12 @@ const Capabilities = () => {
                 { icon: "memory", label: "Electrical" },
                 { icon: "car_repair", label: "Automotive" },
                 { icon: "settings", label: "Industrial" },
-                { icon: "stethoscope", label: "Medical" }
+                { icon: "stethoscope", label: "Medical" },
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2 lg:gap-3 group">
+                <div
+                  key={idx}
+                  className="flex items-center gap-2 lg:gap-3 group"
+                >
                   <span className="material-symbols-outlined text-3xl text-slate-700 group-hover:text-brand-blue transition-colors duration-300">
                     {item.icon}
                   </span>

@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { getHeroSliderImages } from "../lib/api";
 import FirstLoader from "../components/animations/FirstLoader";
+import ScrollTopButton from "../components/common/ScrollTopButton";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -70,6 +71,7 @@ const MainLayout = () => {
         {/* GSAP ScrollSmoother Wrappers: Fixed elements can sit inside the wrapper but OUTSIDE content */}
         <div id="smooth-wrapper">
           <Navbar />
+          <ScrollTopButton />
           <div id="smooth-content">
             <Outlet />
             <Footer />
