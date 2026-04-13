@@ -181,16 +181,16 @@ const ManufacturingInfrastructure = () => {
           {stats.map((stat, index) => (
             <div 
               key={index}
-              className="reveal-on-scroll reveal-hidden bg-white border border-[#e0e0e0] p-6 sm:p-12 rounded-[1.5rem] sm:rounded-[2rem] hover:shadow-xl hover:shadow-primary/5 hover:border-[#1b365d] transition-all duration-500 flex flex-col items-center text-center group h-full"
+              className="reveal-on-scroll reveal-hidden bg-white border border-[#e0e0e0] p-4 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] hover:shadow-xl hover:shadow-primary/5 hover:border-[#1b365d] transition-all duration-500 flex flex-col items-center text-center group h-full"
               style={{ transitionDelay: stat.delay }}
             >
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#f4f6f8] rounded-xl sm:rounded-2xl flex items-center justify-center mb-6 sm:mb-10 group-hover:scale-110 transition-transform duration-500">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#f4f6f8] rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-500">
                 <span className="material-symbols-outlined text-[#1b365d] text-2xl sm:text-3xl font-light">
                   {stat.icon}
                 </span>
               </div>
               
-              <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-2">
                 <h3 className="text-2xl sm:text-4xl font-black text-[#1b365d] tracking-tight">
                   {stat.value}
                 </h3>

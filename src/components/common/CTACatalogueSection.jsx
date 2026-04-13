@@ -302,7 +302,7 @@ const CTACatalogueSection = () => {
                 href={hrefs.whatsapp || "#"}
                 target="_blank"
                 rel="noreferrer"
-                className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 sm:gap-2 bg-transparent hover:bg-white/10 border-2 border-slate-400 hover:border-white text-white px-3 py-3.5 sm:px-8 sm:py-4 rounded-lg font-semibold text-sm sm:text-lg transition-all duration-300 cursor-pointer"
+                className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 sm:gap-2 bg-[#25D366] border-2 border-[#25D366] text-white px-3 py-3.5 sm:px-8 sm:py-4 rounded-lg font-semibold text-sm sm:text-lg transition-all duration-300 cursor-pointer shadow-lg shadow-green-900/10 hover:shadow-green-500/30"
               >
                 <svg
                   className="w-6 h-6 fill-current"

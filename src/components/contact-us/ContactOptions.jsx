@@ -8,7 +8,7 @@ const ContactOptions = () => {
     {
       title: "Phone Support",
       details: info.phone || "+91 98765 43210",
-      subDetails: "Mon-Sat: 9:00 AM - 6:00 PM IST",
+      subDetails: "Sat-Thu: 8:00 AM - 8:00 PM IST",
       linkText: "Call Now",
       linkHref: hrefs.tel || "tel:+919876543210",
       icon: (

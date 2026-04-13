@@ -23,7 +23,7 @@ const Navbar = () => {
       href: "/",
       children: [
         // { name: "Hero", href: "/#hero" },
-        { name: "Capabilities", href: "/#capabilities" },
+        { name: "Manufacturing Capabilities", href: "/#capabilities" },
         { name: "Materials Specialization", href: "/#materials" },
         { name: "Quality Process", href: "/#quality-system" },
         { name: "Export Experience", href: "/#export-experience" },

@@ -175,25 +175,23 @@ const InspectionEquipment = () => {
   const renderItem = (item, key) => (
     <div
       key={key}
-      className={`${equipment.length >= 4 ? 'w-[calc(100vw-64px)] sm:w-[320px] md:w-[400px] shrink-0' : ''} bg-white p-10 rounded-xl shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-md`}
+      className={`${equipment.length >= 4 ? 'w-[calc(100vw-64px)] sm:w-[320px] md:w-[400px] shrink-0' : ''} bg-white p-10 rounded-xl shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-md flex flex-col items-start`}
     >
-      <div className="flex items-start gap-6 text-left">
-        <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center shrink-0">
-          <span className="material-symbols-outlined text-[26px] text-primary">{item.icon}</span>
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-xl font-bold text-primary mb-1 break-words">{item.title}</h3>
-          <p className="text-accent text-sm font-medium mb-6 uppercase tracking-wider break-words">{item.subtitle}</p>
+      <div className="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center self-center mb-8 shrink-0 shadow-sm border border-primary/5 transition-transform duration-500 group-hover:scale-110">
+        <span className="material-symbols-outlined text-[32px] text-primary">{item.icon}</span>
+      </div>
+      <div className="w-full">
+        <h3 className="text-xl font-bold text-primary mb-1 break-words">{item.title}</h3>
+        <p className="text-accent text-sm font-medium mb-6 uppercase tracking-wider break-words">{item.subtitle}</p>
 
-          <div className="space-y-4">
-            <div>
-              <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Accuracy</p>
-              <p className="text-secondary font-medium text-sm break-words whitespace-pre-wrap">{item.accuracy}</p>
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Application</p>
-              <p className="text-secondary text-sm leading-relaxed break-words whitespace-pre-wrap">{item.application.join(', ') || '-'}</p>
-            </div>
+        <div className="space-y-4">
+          <div className="group/detail">
+            <p className="text-[12px] uppercase tracking-widest text-primary font-black mb-1 group-hover/detail:text-accent transition-colors">Accuracy</p>
+            <p className="text-secondary font-medium text-sm break-words whitespace-pre-wrap">{item.accuracy}</p>
+          </div>
+          <div className="group/detail">
+            <p className="text-[12px] uppercase tracking-widest text-primary font-black mb-1 group-hover/detail:text-accent transition-colors">Application</p>
+            <p className="text-secondary text-sm leading-relaxed break-words whitespace-pre-wrap">{item.application.join(', ') || '-'}</p>
           </div>
         </div>
       </div>
@@ -206,7 +204,7 @@ const InspectionEquipment = () => {
         {/* Equipment Specifications Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
-            Inspection Equipment Specifications
+            Inspection Equipment & Specifications
           </h2>
           <p className="text-[18px] text-slate-600 leading-relaxed">
             Calibrated precision measurement instruments ensuring accurate dimensional verification and quality compliance.

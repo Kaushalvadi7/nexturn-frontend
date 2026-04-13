@@ -240,7 +240,7 @@ const ExportExperience = () => {
           id="regions-we-serve"
           className="scroll-mt-24 reveal-on-scroll reveal-hidden text-center mb-16 lg:mb-20 max-w-7xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">Export Regions</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">Regions We Serve</h2>
           <p className="text-[18px] text-slate-600 leading-relaxed mb-10">Our reach is in global; our quality is universal. This map showcases the diverse international markets that trust Nexturn Componentcraft for their critical engineering needs. As we scale our operations, we remain dedicated to bridging the gap between Indian manufacturing expertise and global industrial requirements.</p>
           <ExportMap servedRegions={servedRegionsData} />
         </div>

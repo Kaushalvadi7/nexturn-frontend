@@ -125,25 +125,51 @@ const ViewAllProduct = () => {
   ];
 
   const renderTextListTable = (items, emptyMessage, showIcon = true) => (
-    <div className="flex flex-col gap-4">
+    <div className="space-y-2">
       {items.length > 0 ? (
-        items.map((item, index) => (
-          <div 
-            key={`${item}-${index}`}
-            className="flex items-start gap-4 p-1 bg-white border border-slate-100 rounded-2xl hover:border-[#e17000] hover:shadow-lg hover:shadow-[#e17000]/5 transition-all group"
-          >
-            {showIcon && (
-              <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-[#e17000]/10 transition-colors">
-                <span className="material-symbols-outlined text-[#e17000] text-lg">
-                  check_circle
-                </span>
+        Array.from({ length: Math.ceil(items.length / 2) }, (_, rowIndex) => {
+          const firstIndex = rowIndex * 2;
+          const secondIndex = firstIndex + 1;
+          const isFirstRow = rowIndex === 0;
+          
+          return (
+            <div key={rowIndex} className="grid grid-cols-2 gap-4">
+              <div 
+                className="flex items-start gap-4 p-1 bg-white rounded-2xl group"
+              >
+                {showIcon && (
+                  <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
+                    <span className="material-symbols-outlined text-green-600 text-lg">
+                      check_circle
+                    </span>
+                  </div>
+                )}
+                <p className="text-[#1b365d] text-[13px] font-bold leading-relaxed pt-1 break-words whitespace-pre-wrap flex-1 min-w-0">
+                  {items[firstIndex]}
+                </p>
               </div>
-            )}
-            <p className="text-[#1b365d] text-[13px] font-bold leading-relaxed pt-1 break-words whitespace-pre-wrap flex-1 min-w-0">
-              {item}
-            </p>
-          </div>
-        ))
+              
+              {secondIndex < items.length ? (
+                <div 
+                  className="flex items-start gap-4 p-1 bg-white rounded-2xl group"
+                >
+                  {showIcon && (
+                    <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
+                      <span className="material-symbols-outlined text-green-600 text-lg">
+                        check_circle
+                      </span>
+                    </div>
+                  )}
+                  <p className="text-[#1b365d] text-[13px] font-bold leading-relaxed pt-1 break-words whitespace-pre-wrap flex-1 min-w-0">
+                    {items[secondIndex]}
+                  </p>
+                </div>
+              ) : (
+                <div></div>
+              )}
+            </div>
+          );
+        })
       ) : (
         <div className="py-12 text-center bg-slate-50/50 rounded-[2rem] border border-dashed border-slate-200">
           <p className="text-slate-400 text-sm font-medium">
@@ -185,24 +211,24 @@ const ViewAllProduct = () => {
         {category && (
           <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden mb-20">
             <div className="flex flex-col lg:flex-row min-h-[700px]">
-              <div className="lg:w-[45%] relative group">
+              <div className="lg:w-[45%] relative group bg-white flex items-start justify-start p-6 lg:p-10 border-r border-slate-50">
                 <img
                   src={getCategoryImage(category)}
                   alt={category.name}
-                  className="w-full h-full object-cover"
+                  className="max-w-full h-auto object-contain object-left-top rounded-2xl transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/10"></div>
+                
 
-                <div className="absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/20 rounded-lg">
+                {/* <div className="absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/20 rounded-lg">
                   <div className="w-2 h-2 rounded-full bg-[#e17000]"></div>
                   <span className="text-[10px] font-black text-white uppercase tracking-widest">
                     {category.name}
                   </span>
-                </div>
+                </div> */}
               </div>
 
-              <div className="lg:w-[55%] p-8 lg:p-14 flex flex-col min-w-0">
-                <div className="space-y-6 flex-1 min-w-0">
+              <div className="lg:w-[55%] pt-5 pb-8 px-8 lg:pt-10 lg:pb-14 lg:px-14 flex flex-col min-w-0">
+                <div className="space-y-3 flex-1 min-w-0">
                   <div className="flex items-center gap-2 text-[#e17000]">
                     <div className="w-2 h-2 rounded-full bg-[#e17000]"></div>
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -220,7 +246,7 @@ const ViewAllProduct = () => {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-6 md:gap-12 pt-6 border-b border-slate-100 mb-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                  <div className="flex items-center gap-6 md:gap-12 pt-1 border-b border-slate-100 mb-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
                     {tabs.map((tab) => (
                       <button
                         key={tab.id}
@@ -232,20 +258,45 @@ const ViewAllProduct = () => {
                     ))}
                   </div>
 
-                  <div className="min-h-[300px]">
+                  <div className="min-h-[100px]">
                     {activeTab === "applications" ? (
-                      <div className="space-y-8">
-                        {applications.map((item, i) => (
-                          <div key={i} className="space-y-2">
-                            <h3 className="text-lg font-black text-[#1b365d]">
-                              Application {i + 1}
-                            </h3>
-                            <p className="text-slate-500 text-[15px] font-medium leading-relaxed break-words whitespace-pre-wrap">
-                              {item}
-                            </p>
-                          </div>
-                        ))}
-                        {applications.length === 0 && (
+                      <div className="space-y-1">
+                        {applications.length > 0 ? (
+                          Array.from({ length: Math.ceil(applications.length / 2) }, (_, rowIndex) => {
+                            const firstIndex = rowIndex * 2;
+                            const secondIndex = firstIndex + 1;
+                            
+                            return (
+                              <div key={rowIndex} className="grid grid-cols-2 gap-4">
+                                <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
+                                  <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
+                                    <span className="material-symbols-outlined text-green-600 text-lg">
+                                      check_circle
+                                    </span>
+                                  </div>
+                                  <p className="text-[#1b365d] text-[13px] font-bold leading-relaxed pt-1 break-words whitespace-pre-wrap flex-1 min-w-0">
+                                    {applications[firstIndex]}
+                                  </p>
+                                </div>
+                                
+                                {secondIndex < applications.length ? (
+                                  <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
+                                    <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
+                                      <span className="material-symbols-outlined text-green-600 text-lg">
+                                        check_circle
+                                      </span>
+                                    </div>
+                                    <p className="text-[#1b365d] text-[13px] font-bold leading-relaxed pt-1 break-words whitespace-pre-wrap flex-1 min-w-0">
+                                      {applications[secondIndex]}
+                                    </p>
+                                  </div>
+                                ) : (
+                                  <div></div>
+                                )}
+                              </div>
+                            );
+                          })
+                        ) : (
                           <p className="text-slate-500 text-sm font-medium py-10 text-center bg-slate-50/50 rounded-[2rem] border border-dashed border-slate-200">
                             No applications configured for this category yet.
                           </p>
