@@ -801,7 +801,7 @@ const AdminCategory = () => {
                   </div>
                 </div>
 
-                {/* Applications Section */}
+                {/* Applications Section - Commented out as requested
                 <div className="relative overflow-hidden bg-white/95 rounded-3xl md:rounded-[2.5rem] p-6 md:p-10 border border-slate-200 shadow-[0_20px_45px_-25px_rgba(15,23,42,0.25)] ring-1 ring-slate-100 space-y-8 transition-all">
                   <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-500/50 via-cyan-400/40 to-sky-500/50"></div>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-5 gap-4">
@@ -845,6 +845,7 @@ const AdminCategory = () => {
                     ))}
                   </div>
                 </div>
+                */}
 
                 {renderTextListSection({
                   field: "processDetails",
@@ -864,7 +865,7 @@ const AdminCategory = () => {
                   deleteType: "surface_finish",
                 })}
 
-                {/* Materials Table Section */}
+                {/* Materials Table Section - Commented out as requested
                 <div className="relative overflow-hidden bg-white/95 rounded-3xl md:rounded-[2.5rem] p-6 md:p-10 border border-slate-200 shadow-[0_20px_45px_-25px_rgba(15,23,42,0.25)] ring-1 ring-slate-100 space-y-8 transition-all">
                   <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500/50 via-teal-400/40 to-blue-500/50"></div>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-5 gap-4">
@@ -960,6 +961,7 @@ const AdminCategory = () => {
                     </table>
                   </div>
                 </div>
+                */}
 
                 {/* Linked Products View */}
                 <div className="space-y-10 pt-4">
