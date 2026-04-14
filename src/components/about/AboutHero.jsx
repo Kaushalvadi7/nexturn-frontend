@@ -65,7 +65,7 @@ const AboutHero = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
            
           {/* Left Content */}
-          <div className="space-y-8 reveal-on-scroll reveal-hidden text-left">
+          <div className="space-y-6 reveal-on-scroll reveal-hidden text-left">
             {/* Breadcrumbs */}
             <nav className="flex items-center gap-3 text-white/60 text-sm font-medium mb-6">
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
@@ -73,26 +73,26 @@ const AboutHero = () => {
               <span className="text-white font-bold underline decoration-accent decoration-2 underline-offset-4 tracking-tight">About Us</span>
             </nav>
 
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-              <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
-              <span className="text-xs font-bold text-white uppercase tracking-widest">Established 2010 • Export Excellence</span>
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                <span className="text-xs font-bold text-white uppercase tracking-widest">Established 2010 • Export Excellence</span>
+              </div>
+              
+              <div className="space-y-4">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
+                  Precision Engineering <br />
+                  <span className="block text-2xl sm:text-3xl lg:text-2xl font-bold text-accent leading-tight tracking-tight drop-shadow-lg">Meets Export Excellence</span>
+                </h1>
+                <p className="text-lg text-slate-200 max-w-2xl leading-relaxed">
+                  A trusted precision manufacturing partner bridging Indian manufacturing excellence with international quality standards. We speak the language of procurement professionals who need custom metal components manufactured to exact specifications.
+                </p>
+              </div>
             </div>
-            
-            <div className="space-y-2">
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
-              Precision Engineering <br />
-              <span className="block text-2xl sm:text-3xl lg:text-2xl font-bold text-accent leading-tight tracking-tight drop-shadow-lg">Meets Export Excellence</span>
-            </h1>
-            </div>
-
-            <p className="text-slate-300 text-lg md:text-xl leading-relaxed max-w-2xl">
-              A trusted precision manufacturing partner bridging Indian manufacturing excellence with international quality standards. We speak the language of procurement professionals who need custom metal components manufactured to exact specifications.
-            </p>
 
             {/* Stats Cards */}
             {aboutMetrics.length > 0 && (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {aboutMetrics.map((metric) => (
                   <div
                     key={metric.id}

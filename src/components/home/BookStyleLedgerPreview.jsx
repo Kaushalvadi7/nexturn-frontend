@@ -23,10 +23,21 @@ const BookStyleLedgerPreview = ({
 
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [loadError, setLoadError] = useState(null);
+    const [pdfAspectRatio, setPdfAspectRatio] = useState(1.414); // Default to A4 ratio
 
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages);
         setLoadError(null);
+    };
+
+    const onPageLoadSuccess = (page) => {
+        // Calculate the actual aspect ratio of the PDF page
+        if (page && page.width && page.height) {
+            const ratio = page.height / page.width;
+            if (Math.abs(pdfAspectRatio - ratio) > 0.01) {
+                setPdfAspectRatio(ratio);
+            }
+        }
     };
 
     const onDocumentLoadError = (error) => {
@@ -39,23 +50,22 @@ const BookStyleLedgerPreview = ({
         const viewportHeight = window.innerHeight;
         const isMobileView = viewportWidth < 768;
         
-        // Modal container dimensions - give more space on mobile
+        // Modal container dimensions
         const containerWidth = isModal ? (isMobileView ? viewportWidth * 0.95 : viewportWidth * 0.98) : viewportWidth;
         const containerHeight = isModal ? viewportHeight * 0.95 : viewportHeight;
 
-        // Use the precise A4 aspect ratio (1.414) to prevent content being cut
-        const a4Ratio = 1.414;
+        // Use the dynamically detected ratio
+        const ratio = pdfAspectRatio;
         
         // Target width: single page if mobile, half container if desktop
-        // Subtract more padding on desktop for the double-page spread
         const targetWidth = isMobileView 
-            ? Math.min(viewportWidth - 32, 500) // Single page on mobile
-            : Math.min(900, containerWidth / 2 - 60); // Double page on desktop
+            ? Math.min(viewportWidth - 40, 480) 
+            : Math.min(900, containerWidth / 2 - 60);
 
-        const targetHeight = targetWidth * a4Ratio; 
+        const targetHeight = targetWidth * ratio; 
 
         // Enforce max height constraints
-        const verticalPadding = isMobileView ? 120 : 80;
+        const verticalPadding = isMobileView ? 200 : 120;
         const maxHeight = containerHeight - verticalPadding;
         
         let finalWidth = targetWidth;
@@ -63,14 +73,14 @@ const BookStyleLedgerPreview = ({
 
         if (finalHeight > maxHeight) {
             finalHeight = maxHeight;
-            finalWidth = finalHeight / a4Ratio;
+            finalWidth = finalHeight / ratio;
         }
 
         return {
-            width: Math.max(280, finalWidth),
-            height: Math.max(400, finalHeight)
+            width: Math.max(280, Math.floor(finalWidth)),
+            height: Math.max(400, Math.floor(finalHeight))
         };
-    }, [isModal]);
+    }, [isModal, pdfAspectRatio]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -80,10 +90,10 @@ const BookStyleLedgerPreview = ({
         window.addEventListener('resize', handleResize);
         handleResize(); // Initial
         return () => window.removeEventListener('resize', handleResize);
-    }, [calculateBookDimensions]);
+    }, [calculateBookDimensions, pdfAspectRatio]);
 
     return (
-        <section className={isModal ? "p-4 pb-8 bg-transparent flex flex-col items-center justify-center min-h-screen overflow-hidden" : "py-20 bg-white overflow-hidden flex flex-col items-center min-h-screen"}>
+        <section className={isModal ? "p-4 pb-8 bg-transparent flex flex-col items-center justify-center min-h-screen" : "py-20 bg-white flex flex-col items-center min-h-screen"}>
             {!isModal && (
                 <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
                     <h2 className="text-4xl md:text-6xl font-bold text-zinc-900 mb-6 uppercase tracking-tighter">Company Profile</h2>
@@ -96,22 +106,22 @@ const BookStyleLedgerPreview = ({
             <div className={`book-calendar-page relative group/book ${isDarkTheme ? 'dark-theme' : ''}`} style={{ minHeight: isModal ? 'auto' : 'auto', padding: isModal ? '0' : '' }}>
                 {bookDimensions.width > 0 && (
                   <div className="relative flex items-center justify-center">
-                    {/* Navigation Buttons */}
+                    {/* Navigation Buttons - Below on Mobile, Side on Desktop */}
                     {numPages && (
                       <>
                         <button 
                           onClick={() => flipBookRef.current?.pageFlip().flipPrev()}
-                          className="absolute -left-4 sm:-left-16 lg:-left-24 z-[60] w-12 h-12 rounded-full bg-primary/20 hover:bg-primary border border-white/20 text-white flex items-center justify-center shadow-2xl backdrop-blur-md transition-all active:scale-90 cursor-pointer pointer-events-auto"
+                          className="absolute bottom-[-80px] sm:bottom-auto left-[15%] sm:left-0 translate-x-0 sm:-translate-x-[60%] lg:-translate-x-[100%] z-[70] w-14 h-14 rounded-full bg-zinc-800 sm:bg-white/10 hover:bg-zinc-900 sm:hover:bg-white/20 border border-white/20 text-white flex items-center justify-center shadow-xl backdrop-blur-md transition-all active:scale-95 cursor-pointer group/nav"
                           aria-label="Previous page"
                         >
-                          <span className="material-symbols-outlined font-black">chevron_left</span>
+                          <span className="material-symbols-outlined transition-transform group-hover/nav:-translate-x-1">arrow_back</span>
                         </button>
                         <button 
                           onClick={() => flipBookRef.current?.pageFlip().flipNext()}
-                          className="absolute -right-4 sm:-right-16 lg:-right-24 z-[60] w-12 h-12 rounded-full bg-primary/20 hover:bg-primary border border-white/20 text-white flex items-center justify-center shadow-2xl backdrop-blur-md transition-all active:scale-90 cursor-pointer pointer-events-auto"
+                          className="absolute bottom-[-80px] sm:bottom-auto right-[15%] sm:right-0 translate-x-0 sm:translate-x-[60%] lg:translate-x-[100%] z-[70] w-14 h-14 rounded-full bg-zinc-800 sm:bg-white/10 hover:bg-zinc-900 sm:hover:bg-white/20 border border-white/20 text-white flex items-center justify-center shadow-xl backdrop-blur-md transition-all active:scale-95 cursor-pointer group/nav"
                           aria-label="Next page"
                         >
-                          <span className="material-symbols-outlined font-black">chevron_right</span>
+                          <span className="material-symbols-outlined transition-transform group-hover/nav:translate-x-1">arrow_forward</span>
                         </button>
                       </>
                     )}
@@ -136,6 +146,7 @@ const BookStyleLedgerPreview = ({
                         
                         {numPages && (
                             <FlipBook
+                                key={`flipbook-${pdfAspectRatio}-${isMobile}`} 
                                 ref={flipBookRef}
                                 width={bookDimensions.width}
                                 height={bookDimensions.height}
@@ -158,14 +169,27 @@ const BookStyleLedgerPreview = ({
                                 minHeight={isMobile ? 400 : 400}
                                 maxHeight={isMobile ? 800 : 1200}
                             >
-                                {/* PDF PAGES */}
+                                {/* FIRST PAGE: COVER IMAGE */}
+                                <div className="page bg-white border-zinc-800" key="cover-page">
+                                    <div className="w-full h-full relative overflow-hidden">
+                                        <img 
+                                            src="/company_profile.webp" 
+                                            alt="Company Profile Cover" 
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+                                    </div>
+                                </div>
+
+                                {/* INNER PAGES: PDF CONTENT */}
                                 {Array.from(new Array(numPages), (el, index) => (
-                                    <div className="page bg-white border-zinc-800" key={`page_${index + 1}`}>
+                                    <div className="page bg-white border-zinc-800" key={`pdf_page_${index + 1}`}>
                                         <Page 
                                             pageNumber={index + 1} 
-                                            width={bookDimensions.width}
+                                            width={bookDimensions.width} // Use full width
                                             renderTextLayer={false}
                                             renderAnnotationLayer={false}
+                                            onLoadSuccess={onPageLoadSuccess} // Trigger for all pages to ensure detection
                                             className="pdf-page-container"
                                         />
                                         <div className="absolute bottom-2 left-0 right-0 text-center text-[10px] text-zinc-400 opacity-30 font-mono">
@@ -173,6 +197,20 @@ const BookStyleLedgerPreview = ({
                                         </div>
                                     </div>
                                 ))}
+
+                                {/* LAST PAGE: BACK COVER IMAGE */}
+                                <div className="page bg-white border-zinc-800" key="back-cover-page">
+                                    <div className="w-full h-full relative overflow-hidden">
+                                        <img 
+                                            src="/company_profile.webp" 
+                                            alt="Company Profile Back Cover" 
+                                            className="w-full h-full object-cover grayscale opacity-80"
+                                        />
+                                        <div className="absolute inset-0 bg-zinc-900/40 flex items-center justify-center">
+                                            <img src="/nexturn.png" alt="Nexturn Logo" className="w-32 opacity-90" />
+                                        </div>
+                                    </div>
+                                </div>
                             </FlipBook>
                         )}
                     </Document>

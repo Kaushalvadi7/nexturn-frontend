@@ -307,13 +307,13 @@ const ViewAllProduct = () => {
                         <table className="w-full text-left border-collapse">
                           <thead>
                             <tr className="bg-[#12243d]">
-                              <th className="px-5 py-4 text-[10px] font-black text-white uppercase tracking-widest">
+                              <th className="px-5 py-3 text-[10px] font-black text-white uppercase tracking-widest">
                                 Grade
                               </th>
-                              <th className="px-5 py-4 text-[10px] font-black text-white uppercase tracking-widest">
+                              <th className="px-5 py-3 text-[10px] font-black text-white uppercase tracking-widest">
                                 Standard
                               </th>
-                              <th className="px-5 py-4 text-[10px] font-black text-white uppercase tracking-widest">
+                              <th className="px-5 py-3 text-[10px] font-black text-white uppercase tracking-widest">
                                 Notes
                               </th>
                             </tr>
@@ -328,13 +328,13 @@ const ViewAllProduct = () => {
                                     : "bg-slate-50/50 hover:bg-slate-100 border-b border-slate-50"
                                 }
                               >
-                                <td className="px-5 py-4 text-[11px] font-black text-[#1b365d]">
+                                <td className="px-5 py-2 text-[11px] font-black text-[#1b365d]">
                                   {grade.grade}
                                 </td>
-                                <td className="px-5 py-4 text-[11px] font-bold text-slate-500 italic">
+                                <td className="px-5 py-2 text-[11px] font-bold text-slate-500 italic">
                                   {grade.standard || "-"}
                                 </td>
-                                <td className="px-5 py-4 text-[11px] font-medium text-slate-400">
+                                <td className="px-5 py-2 text-[11px] font-medium text-slate-400">
                                   {grade.notes || "-"}
                                 </td>
                               </tr>
@@ -343,7 +343,7 @@ const ViewAllProduct = () => {
                               <tr className="bg-white">
                                 <td
                                   colSpan="3"
-                                  className="px-5 py-6 text-sm text-slate-500 font-medium"
+                                  className="px-5 py-4 text-sm text-slate-500 font-medium"
                                 >
                                   No material grades configured for this
                                   category yet.
@@ -456,7 +456,7 @@ const ViewAllProduct = () => {
                       <span className="material-symbols-outlined text-sm">
                         visibility
                       </span>
-                      View Details
+                      View Similar Products
                     </Link>
                   </div>
                 </div>

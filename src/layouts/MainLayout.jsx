@@ -53,7 +53,7 @@ const MainLayout = () => {
     // Minimum 3.5s wait to allow FirstLoader animation to complete
     const minimumWait = new Promise((resolve) => setTimeout(resolve, 3000));
 
-    Promise.all([getHeroSliderImages(), minimumWait])
+    Promise.all([minimumWait])
       .then(() => setIsLoading(false))
       .catch((err) => {
         console.log(err)

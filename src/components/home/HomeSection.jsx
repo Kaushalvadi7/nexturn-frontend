@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getHeroSliderImages, getPerformanceMetrices } from "../../lib/api";
 import { useContactInfo } from "../common/contactInfo";
+import WatermarkImage from "../common/WatermarkImage";
 
 const HomeSection = () => {
   const fallbackImages = [
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuAIi-tnEwuP0dQbMTnuRUo2fxhMYFPsNyA_EuaAaCYHkJmuEcrslHk7dDRJuvig7NupJCPfm04rWy9iUHs3j_vXCBxeOjiVq1HZ_9mSmF8mASAZ1MDJuAsdf-jXfe42cqMFVxhNffaPFGApCofSfy4YnkZ88_v6qlFCPqWGpVzA60soRreXPvEfVnJa8UvLdp1YrDU_uIJ-a6fNr6_zBWTPASP27QpUUtv7EKaoxrsw7UYacYelxYo---ZIjIB-NFuHKxKzWzpfVjZq",
+    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070",
     "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=2070",
     "https://images.unsplash.com/photo-1645754884804-a65f5550ec1b?auto=format&fit=crop&q=80&w=2070",
-    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070"
+    "https://images.unsplash.com/photo-1504917595217-d4dc5f5822b3?auto=format&fit=crop&q=80&w=2070"
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -47,7 +48,7 @@ const HomeSection = () => {
     if (images.length <= 1) return undefined;
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 2000); // Rotate every 2 seconds
+    }, 5000); // Rotate every 5 seconds
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -151,13 +152,14 @@ const HomeSection = () => {
           <div className="relative flex items-center justify-center lg:justify-end animate-fade-in-up [animation-delay:800ms] reveal-hidden lg:pt-16">
             <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden bg-slate-100 border border-white/10">
               {images.map((src, index) => (
-                <img
+                <WatermarkImage
                   key={index}
+                  src={src}
                   alt="Precision metal components close up"
                   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
                     index === currentImageIndex ? "opacity-100" : "opacity-0"
                   }`}
-                  src={src}
+                  watermarkText="NEXTURN PRECISION"
                 />
               ))}
             </div>

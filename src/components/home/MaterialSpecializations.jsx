@@ -120,7 +120,7 @@ const MaterialSpecializations = () => {
         <div className="scroll-mt-24 text-center mb-8 lg:mb-10 max-w-7xl mx-auto">
 
           <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
-            Material Specializations
+            Materials Specialization
           </h2>
           <p className="text-[18px] text-slate-600 leading-relaxed">
             Material integrity is the foundation of every component. We process an extensive range of industrial-grade metals and high-performance alloys,

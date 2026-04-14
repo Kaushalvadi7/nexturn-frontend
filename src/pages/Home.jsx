@@ -21,25 +21,25 @@ const Home = () => {
         }}
       />
       <div className="dark:bg-background-dark">
-        <div id="hero" className="scroll-mt-24">
+        <div id="hero" className="scroll-mt-32">
           <HomeSection />
         </div>
-        <div className="scroll-mt-24">
+        <div className="scroll-mt-32">
           <Capabilities />
         </div>
-        <div id="materials" className="scroll-mt-24">
+        <div id="materials" className="scroll-mt-32">
           <MaterialSpecializations />
         </div>
-        <div id="quality-system" className="scroll-mt-24">
+        <div id="quality-system" className="scroll-mt-32">
           <QualitySystem />
         </div>
-        <div id="client-reviews" className="scroll-mt-24">
+        <div id="client-reviews" className="scroll-mt-32">
           <ClientReviews />
         </div>
-        <div id="export-experience" className="scroll-mt-24">
+        <div id="export-experience" className="scroll-mt-32">
           <ExportExperience />
         </div>
-        {/* <div id="request-quote" className="scroll-mt-24">
+        {/* <div id="request-quote" className="scroll-mt-32">
         <RequestQuote />
       </div> */}
       </div>

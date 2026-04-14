@@ -92,7 +92,7 @@ const ManufacturingFacility = () => {
     { icon: "domain", value: "15,000 sq ft", label: "Total Area" },
     { icon: "precision_manufacturing", value: "Advanced Machinery", label: "Automated Infrastructure" },
     { icon: "fact_check", value: "Measuring Instruments", label: "Quality Support" },
-    { icon: "workspace_premium", value: "PPAP 3.1 Certificate", label: "Certification Support" },
+    { icon: "workspace_premium", value: "PPAP & 3.1 Certificate", label: "Certification Support" },
   ];
 
   const items = useMemo(() => facalities, [facalities]);

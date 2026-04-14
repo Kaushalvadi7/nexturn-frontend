@@ -102,6 +102,9 @@
 .pdf-page-container canvas {
   margin: 0 auto;
   display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain; /* Changed back to contain but with no container padding */
 }
 
 .pdf-page-container {
@@ -110,6 +113,9 @@
   align-items: center;
   height: 100%;
   width: 100%;
+  padding: 0 !important; /* Forces removal of any top/bottom white space */
+  margin: 0 !important;
+  background: white !important;
 }
 
 /* Toggle Button */
