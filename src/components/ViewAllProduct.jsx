@@ -131,12 +131,10 @@ const ViewAllProduct = () => {
           const firstIndex = rowIndex * 2;
           const secondIndex = firstIndex + 1;
           const isFirstRow = rowIndex === 0;
-          
+
           return (
             <div key={rowIndex} className="grid grid-cols-2 gap-4">
-              <div 
-                className="flex items-start gap-4 p-1 bg-white rounded-2xl group"
-              >
+              <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
                 {showIcon && (
                   <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
                     <span className="material-symbols-outlined text-green-600 text-lg">
@@ -148,11 +146,9 @@ const ViewAllProduct = () => {
                   {items[firstIndex]}
                 </p>
               </div>
-              
+
               {secondIndex < items.length ? (
-                <div 
-                  className="flex items-start gap-4 p-1 bg-white rounded-2xl group"
-                >
+                <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
                   {showIcon && (
                     <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
                       <span className="material-symbols-outlined text-green-600 text-lg">
@@ -172,9 +168,7 @@ const ViewAllProduct = () => {
         })
       ) : (
         <div className="py-12 text-center bg-slate-50/50 rounded-[2rem] border border-dashed border-slate-200">
-          <p className="text-slate-400 text-sm font-medium">
-            {emptyMessage}
-          </p>
+          <p className="text-slate-400 text-sm font-medium">{emptyMessage}</p>
         </div>
       )}
     </div>
@@ -217,7 +211,6 @@ const ViewAllProduct = () => {
                   alt={category.name}
                   className="max-w-full h-auto object-contain object-left-top rounded-2xl transition-transform duration-700 group-hover:scale-105"
                 />
-                
 
                 {/* <div className="absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/20 rounded-lg">
                   <div className="w-2 h-2 rounded-full bg-[#e17000]"></div>
@@ -262,24 +255,17 @@ const ViewAllProduct = () => {
                     {activeTab === "applications" ? (
                       <div className="space-y-1">
                         {applications.length > 0 ? (
-                          Array.from({ length: Math.ceil(applications.length / 2) }, (_, rowIndex) => {
-                            const firstIndex = rowIndex * 2;
-                            const secondIndex = firstIndex + 1;
-                            
-                            return (
-                              <div key={rowIndex} className="grid grid-cols-2 gap-4">
-                                <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
-                                  <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
-                                    <span className="material-symbols-outlined text-green-600 text-lg">
-                                      check_circle
-                                    </span>
-                                  </div>
-                                  <p className="text-[#1b365d] text-[13px] font-bold leading-relaxed pt-1 break-words whitespace-pre-wrap flex-1 min-w-0">
-                                    {applications[firstIndex]}
-                                  </p>
-                                </div>
-                                
-                                {secondIndex < applications.length ? (
+                          Array.from(
+                            { length: Math.ceil(applications.length / 2) },
+                            (_, rowIndex) => {
+                              const firstIndex = rowIndex * 2;
+                              const secondIndex = firstIndex + 1;
+
+                              return (
+                                <div
+                                  key={rowIndex}
+                                  className="grid grid-cols-2 gap-4"
+                                >
                                   <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
                                     <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
                                       <span className="material-symbols-outlined text-green-600 text-lg">
@@ -287,15 +273,28 @@ const ViewAllProduct = () => {
                                       </span>
                                     </div>
                                     <p className="text-[#1b365d] text-[13px] font-bold leading-relaxed pt-1 break-words whitespace-pre-wrap flex-1 min-w-0">
-                                      {applications[secondIndex]}
+                                      {applications[firstIndex]}
                                     </p>
                                   </div>
-                                ) : (
-                                  <div></div>
-                                )}
-                              </div>
-                            );
-                          })
+
+                                  {secondIndex < applications.length ? (
+                                    <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
+                                      <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
+                                        <span className="material-symbols-outlined text-green-600 text-lg">
+                                          check_circle
+                                        </span>
+                                      </div>
+                                      <p className="text-[#1b365d] text-[13px] font-bold leading-relaxed pt-1 break-words whitespace-pre-wrap flex-1 min-w-0">
+                                        {applications[secondIndex]}
+                                      </p>
+                                    </div>
+                                  ) : (
+                                    <div></div>
+                                  )}
+                                </div>
+                              );
+                            },
+                          )
                         ) : (
                           <p className="text-slate-500 text-sm font-medium py-10 text-center bg-slate-50/50 rounded-[2rem] border border-dashed border-slate-200">
                             No applications configured for this category yet.
@@ -417,7 +416,7 @@ const ViewAllProduct = () => {
                     </p>
                   </div>
 
-                  <div className="space-y-4">
+                  {/* <div className="space-y-4">
                     <div className="flex items-center gap-2 text-[#1b365d]">
                       <span className="material-symbols-outlined text-lg">
                         science
@@ -445,7 +444,7 @@ const ViewAllProduct = () => {
                         </div>
                       )}
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="pt-4 mt-auto">
                     <Link
