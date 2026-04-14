@@ -592,7 +592,7 @@ const AdminProduct = () => {
                      </div>
 
                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 border-t border-slate-50 pt-12">
-                        {/* Industrial Applications */}
+                        {/* Industrial Applications - Commented out as requested
                         <div className="space-y-6">
                            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                               <h4 className="text-xs font-black text-black uppercase tracking-[0.2em]">Application Hub</h4>
@@ -617,8 +617,9 @@ const AdminProduct = () => {
                               ))}
                            </div>
                         </div>
+                        */}
 
-                        {/* Technical Specs */}
+                        {/* Technical Specs - Commented out as requested
                         <div className="space-y-6">
                            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                               <h4 className="text-xs font-black text-black uppercase tracking-[0.2em]">Tech Specs Matrix</h4>
@@ -628,13 +629,11 @@ const AdminProduct = () => {
                            </div>
                            
                            <div className="border border-slate-200 rounded-2xl overflow-hidden shadow-sm bg-white">
-                              {/* Table Header - Hidden on mobile */}
                               <div className="hidden sm:flex bg-[#1b365d] px-8 py-4 items-center justify-between">
                                  <span className="text-xs font-black text-white uppercase tracking-widest">Parameter / Property</span>
                                  <span className="text-xs font-black text-white uppercase tracking-widest mr-12">Verified Value</span>
                               </div>
                               
-                              {/* Table Body */}
                               <div className="divide-y divide-slate-100">
                                  {editingProduct.specs.map((spec, idx) => (
                                    <div key={idx} className={`flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 px-6 sm:px-8 py-5 relative group/spec transition-colors ${idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}`}>
@@ -677,7 +676,9 @@ const AdminProduct = () => {
                               </div>
                            </div>
                         </div>
+                        */}
 
+                        {/* Validated Material Competencies - Commented out as requested
                         <div className="space-y-8 lg:col-span-2">
                            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-5 gap-4">
                               <h4 className="text-xs font-black text-black uppercase tracking-[0.2em]">
@@ -760,6 +761,7 @@ const AdminProduct = () => {
                               </table>
                            </div>
                         </div>
+                        */}
                      </div>
                   </div>
                </div>
