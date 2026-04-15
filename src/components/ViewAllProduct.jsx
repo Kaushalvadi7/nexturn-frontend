@@ -131,12 +131,10 @@ const ViewAllProduct = () => {
           const firstIndex = rowIndex * 2;
           const secondIndex = firstIndex + 1;
           const isFirstRow = rowIndex === 0;
-          
+
           return (
             <div key={rowIndex} className="grid grid-cols-2 gap-4">
-              <div 
-                className="flex items-start gap-4 p-1 bg-white rounded-2xl group"
-              >
+              <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
                 {showIcon && (
                   <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
                     <span className="material-symbols-outlined text-green-600 text-lg">
@@ -148,11 +146,9 @@ const ViewAllProduct = () => {
                   {items[firstIndex]}
                 </p>
               </div>
-              
+
               {secondIndex < items.length ? (
-                <div 
-                  className="flex items-start gap-4 p-1 bg-white rounded-2xl group"
-                >
+                <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
                   {showIcon && (
                     <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
                       <span className="material-symbols-outlined text-green-600 text-lg">
@@ -172,9 +168,7 @@ const ViewAllProduct = () => {
         })
       ) : (
         <div className="py-12 text-center bg-slate-50/50 rounded-[2rem] border border-dashed border-slate-200">
-          <p className="text-slate-400 text-sm font-medium">
-            {emptyMessage}
-          </p>
+          <p className="text-slate-400 text-sm font-medium">{emptyMessage}</p>
         </div>
       )}
     </div>
@@ -217,7 +211,6 @@ const ViewAllProduct = () => {
                   alt={category.name}
                   className="max-w-full h-auto object-contain object-left-top rounded-2xl transition-transform duration-700 group-hover:scale-105"
                 />
-                
 
                 {/* <div className="absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/20 rounded-lg">
                   <div className="w-2 h-2 rounded-full bg-[#e17000]"></div>
@@ -262,24 +255,17 @@ const ViewAllProduct = () => {
                     {activeTab === "applications" ? (
                       <div className="space-y-1">
                         {applications.length > 0 ? (
-                          Array.from({ length: Math.ceil(applications.length / 2) }, (_, rowIndex) => {
-                            const firstIndex = rowIndex * 2;
-                            const secondIndex = firstIndex + 1;
-                            
-                            return (
-                              <div key={rowIndex} className="grid grid-cols-2 gap-4">
-                                <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
-                                  <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
-                                    <span className="material-symbols-outlined text-green-600 text-lg">
-                                      check_circle
-                                    </span>
-                                  </div>
-                                  <p className="text-[#1b365d] text-[13px] font-bold leading-relaxed pt-1 break-words whitespace-pre-wrap flex-1 min-w-0">
-                                    {applications[firstIndex]}
-                                  </p>
-                                </div>
-                                
-                                {secondIndex < applications.length ? (
+                          Array.from(
+                            { length: Math.ceil(applications.length / 2) },
+                            (_, rowIndex) => {
+                              const firstIndex = rowIndex * 2;
+                              const secondIndex = firstIndex + 1;
+
+                              return (
+                                <div
+                                  key={rowIndex}
+                                  className="grid grid-cols-2 gap-4"
+                                >
                                   <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
                                     <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
                                       <span className="material-symbols-outlined text-green-600 text-lg">
@@ -287,15 +273,28 @@ const ViewAllProduct = () => {
                                       </span>
                                     </div>
                                     <p className="text-[#1b365d] text-[13px] font-bold leading-relaxed pt-1 break-words whitespace-pre-wrap flex-1 min-w-0">
-                                      {applications[secondIndex]}
+                                      {applications[firstIndex]}
                                     </p>
                                   </div>
-                                ) : (
-                                  <div></div>
-                                )}
-                              </div>
-                            );
-                          })
+
+                                  {secondIndex < applications.length ? (
+                                    <div className="flex items-start gap-4 p-1 bg-white rounded-2xl group">
+                                      <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
+                                        <span className="material-symbols-outlined text-green-600 text-lg">
+                                          check_circle
+                                        </span>
+                                      </div>
+                                      <p className="text-[#1b365d] text-[13px] font-bold leading-relaxed pt-1 break-words whitespace-pre-wrap flex-1 min-w-0">
+                                        {applications[secondIndex]}
+                                      </p>
+                                    </div>
+                                  ) : (
+                                    <div></div>
+                                  )}
+                                </div>
+                              );
+                            },
+                          )
                         ) : (
                           <p className="text-slate-500 text-sm font-medium py-10 text-center bg-slate-50/50 rounded-[2rem] border border-dashed border-slate-200">
                             No applications configured for this category yet.
@@ -307,13 +306,13 @@ const ViewAllProduct = () => {
                         <table className="w-full text-left border-collapse">
                           <thead>
                             <tr className="bg-[#12243d]">
-                              <th className="px-5 py-4 text-[10px] font-black text-white uppercase tracking-widest">
+                              <th className="px-5 py-3 text-[10px] font-black text-white uppercase tracking-widest">
                                 Grade
                               </th>
-                              <th className="px-5 py-4 text-[10px] font-black text-white uppercase tracking-widest">
+                              <th className="px-5 py-3 text-[10px] font-black text-white uppercase tracking-widest">
                                 Standard
                               </th>
-                              <th className="px-5 py-4 text-[10px] font-black text-white uppercase tracking-widest">
+                              <th className="px-5 py-3 text-[10px] font-black text-white uppercase tracking-widest">
                                 Notes
                               </th>
                             </tr>
@@ -328,13 +327,13 @@ const ViewAllProduct = () => {
                                     : "bg-slate-50/50 hover:bg-slate-100 border-b border-slate-50"
                                 }
                               >
-                                <td className="px-5 py-4 text-[11px] font-black text-[#1b365d]">
+                                <td className="px-5 py-2 text-[11px] font-black text-[#1b365d]">
                                   {grade.grade}
                                 </td>
-                                <td className="px-5 py-4 text-[11px] font-bold text-slate-500 italic">
+                                <td className="px-5 py-2 text-[11px] font-bold text-slate-500 italic">
                                   {grade.standard || "-"}
                                 </td>
-                                <td className="px-5 py-4 text-[11px] font-medium text-slate-400">
+                                <td className="px-5 py-2 text-[11px] font-medium text-slate-400">
                                   {grade.notes || "-"}
                                 </td>
                               </tr>
@@ -343,7 +342,7 @@ const ViewAllProduct = () => {
                               <tr className="bg-white">
                                 <td
                                   colSpan="3"
-                                  className="px-5 py-6 text-sm text-slate-500 font-medium"
+                                  className="px-5 py-4 text-sm text-slate-500 font-medium"
                                 >
                                   No material grades configured for this
                                   category yet.
@@ -417,7 +416,7 @@ const ViewAllProduct = () => {
                     </p>
                   </div>
 
-                  <div className="space-y-4">
+                  {/* <div className="space-y-4">
                     <div className="flex items-center gap-2 text-[#1b365d]">
                       <span className="material-symbols-outlined text-lg">
                         science
@@ -445,7 +444,7 @@ const ViewAllProduct = () => {
                         </div>
                       )}
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="pt-4 mt-auto">
                     <Link
@@ -456,7 +455,7 @@ const ViewAllProduct = () => {
                       <span className="material-symbols-outlined text-sm">
                         visibility
                       </span>
-                      View Details
+                      View Similar Products
                     </Link>
                   </div>
                 </div>

@@ -11,6 +11,7 @@ const Footer = () => {
   const [isLoadingCerts, setIsLoadingCerts] = useState(true);
   const [isLoadingCats, setIsLoadingCats] = useState(true);
   const [expandedCategoryId, setExpandedCategoryId] = useState(null);
+  const [expandedNavLink, setExpandedNavLink] = useState(null);
   const { info, hrefs } = useContactInfo();
   const location = useLocation();
   const navigate = useNavigate();
@@ -38,6 +39,61 @@ const Footer = () => {
       label: "YouTube",
     },
     { key: "whatsapp", href: hrefs.whatsapp || "#", label: "WhatsApp" },
+  ];
+
+  const navItems = [
+    {
+      name: "Home",
+      href: "/",
+      children: [
+        { name: "Manufacturing Capabilities", href: "/#capabilities" },
+        { name: "Materials Specialization", href: "/#materials" },
+        { name: "Quality Process", href: "/#quality-system" },
+        { name: "Export Experience", href: "/#export-experience" },
+        { name: "Regions we serve", href: "/#regions-we-serve" },
+      ],
+    },
+    {
+      name: "About Us",
+      href: "/about-us",
+      children: [
+        {
+          name: "Engineering Precision",
+          href: "/about-us#engineering-precision",
+        },
+        { name: "Export Journey", href: "/about-us#journey-timeline" },
+        {
+          name: "Manufacturing Infrastructure",
+          href: "/about-us#manufacturing-infrastructure",
+        },
+        { name: "Leadership", href: "/about-us#expertise-leadership" },
+        { name: "Manufacturing Facility", href: "/about-us#manufacturing-facilities" },
+        { name: "Success Stories", href: "/about-us#success-stories" },
+      ],
+    },
+    {
+      name: "Products",
+      href: "/products",
+      children: [{ name: "Categories", href: "/products#materials" }],
+    },
+    {
+      name: "Quality Inspection",
+      href: "/quality-inspection",
+      children: [
+        { name: "Quality Process", href: "/quality-inspection#process" },
+        { name: "Quality Equipment", href: "/quality-inspection#equipment" },
+        { name: "Certifications", href: "/quality-inspection#certifications" },
+      ],
+    },
+    {
+      name: "Contact Us",
+      href: "/contact-us",
+      children: [
+        { name: "Contact Options", href: "/contact-us#contact-options" },
+        { name: "Request a Quote", href: "/contact-us#quote-form" },
+        { name: "FAQ", href: "/contact-us#faq" },
+      ],
+    },
   ];
 
   useEffect(() => {
@@ -134,7 +190,7 @@ const Footer = () => {
       <footer className="bg-[#0A1628] text-white pt-16 pb-8 border-t border-slate-800">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Top Section: 4-Column Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-10 mb-16">
+          <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-10 mb-16 items-start">
             {/* Column 1: Branding */}
             <div className="col-span-2 lg:col-span-3 space-y-6">
               <Link
@@ -172,31 +228,60 @@ const Footer = () => {
                 Quick Links
               </h4>
               <ul className="space-y-4">
-                {[
-                  "Home",
-                  "About Us",
-                  "Products",
-                  "Quality Inspection",
-                  "Contact Us",
-                ].map((link) => (
-                  <li key={link}>
-                    <Link
-                      to={
-                        link === "Home"
-                          ? "/"
-                          : link === "About Us"
-                            ? "/about-us"
-                            : `/${link.toLowerCase().replace(/ /g, "-")}`
-                      }
-                      className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 group text-sm font-medium"
-                    >
-                      <span className="material-symbols-outlined text-[14px] text-secondary group-hover:translate-x-1 transition-transform">
-                        chevron_right
-                      </span>
-                      {link}
-                    </Link>
-                  </li>
-                ))}
+                {navItems.map((item) => {
+                  const isExpanded = expandedNavLink === item.name;
+                  return (
+                    <li key={item.name} className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        {item.children && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setExpandedNavLink(isExpanded ? null : item.name)
+                            }
+                            className="text-slate-500 hover:text-white transition-colors p-0.5 rounded cursor-pointer flex-shrink-0"
+                            aria-label={`Toggle sections for ${item.name}`}
+                          >
+                            <span
+                              className={`material-symbols-outlined text-[14px] transition-transform ${isExpanded ? "rotate-90" : ""}`}
+                            >
+                              chevron_right
+                            </span>
+                          </button>
+                        )}
+                        {!item.children && (
+                          <span className="material-symbols-outlined text-[14px] text-accent flex-shrink-0">
+                            chevron_right
+                          </span>
+                        )}
+                        <Link
+                          to={item.href}
+                          className="text-slate-400 hover:text-white transition-colors group text-[13px] font-bold uppercase tracking-wider truncate"
+                        >
+                          {item.name}
+                        </Link>
+                      </div>
+
+                      {item.children && isExpanded && (
+                        <ul className="ml-6 space-y-2 border-l border-slate-800 pl-3 animate-fade-in-down duration-300">
+                          {item.children.map((child) => (
+                            <li key={child.name}>
+                              <Link
+                                to={child.href}
+                                className="text-slate-500 hover:text-white transition-colors text-xs font-semibold flex items-center gap-2"
+                              >
+                                <span className="material-symbols-outlined text-[12px]">
+                                  subdirectory_arrow_right
+                                </span>
+                                <span className="truncate">{child.name}</span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
