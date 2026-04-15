@@ -132,13 +132,13 @@ const Gallery = () => {
               <div className="h-10 w-[1px] bg-slate-200 hidden sm:block"></div>
               <div className="space-y-1">
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-[#1b365d] tracking-tight">
-                  {material.name} Gallery
+                  {material.name} 
                 </h1>
                 <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest flex items-center gap-2 text-slate-500">
                   <span className="w-3 sm:w-4 h-[1.5px] sm:h-[2px] bg-[#e17000]"></span>
                   {isLoading
                     ? "Loading images..."
-                    : `Showing ${galleryItems.length} images from ${filteredProducts.length} products`}
+                    : `Showing ${galleryItems.length} images from ${filteredProducts.length} Category`}
                 </p>
               </div>
             </div>

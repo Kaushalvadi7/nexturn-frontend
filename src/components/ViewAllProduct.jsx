@@ -230,7 +230,7 @@ const ViewAllProduct = () => {
                   </div>
 
                   <div className="space-y-4">
-                    <h1 className="text-4xl lg:text-5xl font-black text-[#1b365d] tracking-tight break-words">
+                    <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
                       {category.name}
                     </h1>
                     <p className="text-slate-500 text-[15px] leading-relaxed font-medium max-w-2xl break-words whitespace-pre-wrap">

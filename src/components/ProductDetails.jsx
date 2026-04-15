@@ -71,9 +71,9 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="bg-[#fafbfc] min-h-screen pt-20 md:pt-32 pb-20 font-['Source_Sans_3',sans-serif]">
+    <div className="bg-[#fafbfc] min-h-screen pt-16 md:pt-20 pb-16 font-['Source_Sans_3',sans-serif]">
       <section className="px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto">
-        <nav className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-6 md:mb-8 border-b border-slate-100 pb-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
+        <nav className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
           <Link to="/" className="hover:text-[#1E3A5F] transition-colors flex-shrink-0">Home</Link>
           <span className="material-symbols-outlined text-[10px] flex-shrink-0">chevron_right</span>
           <Link to="/product-list" className="hover:text-[#1E3A5F] transition-colors flex-shrink-0">Products</Link>
@@ -81,32 +81,28 @@ const ProductDetails = () => {
           <span className="text-[#1E3A5F] flex-shrink-0">{product.name}</span>
         </nav>
 
-        <div className="space-y-12">
+        <div className="space-y-8">
           {/* Header Section */}
-          <div className="max-w-4xl space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-              <span className="text-slate-400 text-[9px] md:text-[10px] font-bold tracking-widest">
-                Product ID: {product.id}
-              </span>
-              {product.category?.name && (
-                <>
-                  <span className="hidden sm:inline text-slate-300">|</span>
-                  <span className="text-[#e17000] text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em]">
-                    {product.category.name}
-                  </span>
-                </>
+          <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
+            <div className="flex-1 space-y-3">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+                {product.name}
+              </h1>
+
+              {product.description && (
+                <p className="text-slate-500 text-sm md:text-base leading-relaxed font-medium break-words whitespace-pre-wrap">
+                  {product.description}
+                </p>
               )}
             </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-6xl font-black text-[#1E3A5F] tracking-tight leading-tight break-words">
-              {product.name}
-            </h1>
-
-            {product.description && (
-              <p className="text-slate-500 text-base md:text-lg leading-relaxed font-medium break-words whitespace-pre-wrap">
-                {product.description}
-              </p>
-            )}
+            <div className="flex shrink-0 lg:ml-8">
+              {product.category?.name && (
+                <span className="text-[#e17000] text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] bg-[#e17000]/5 px-3 py-1.5 rounded-lg border border-[#e17000]/10">
+                 Category : {product.category.name}
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Image Grid Section */}
@@ -126,7 +122,7 @@ const ProductDetails = () => {
                     <img 
                       src={img} 
                       alt={`${product.name} ${idx + 1}`} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" 
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
                       <span className="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 text-4xl">
