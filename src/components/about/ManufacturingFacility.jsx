@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { getManufacturingFacalities } from "../../lib/api";
+import WatermarkImage from "../common/WatermarkImage";
 
 const FALLBACK_IMAGE =
   "https://img.rocket.new/generatedImages/rocket_gen_img_14aaf5db1-1766919026609.png";
@@ -313,10 +314,11 @@ const ManufacturingFacility = () => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="relative aspect-[4/3] overflow-hidden">
-                <img
+                <WatermarkImage
                   src={item.image || FALLBACK_IMAGE}
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  watermarkText="NEXTURN PRECISION"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1b365d]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </div>

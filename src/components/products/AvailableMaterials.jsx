@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { getCategories } from "../../lib/api";
+import WatermarkImage from "../common/WatermarkImage";
 
 const getCategoryImage = (category) => {
   const images = Array.isArray(category.images) ? category.images : [];
@@ -57,10 +58,11 @@ const AvailableMaterials = () => {
         className="cursor-pointer bg-white rounded-[1.5rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group flex flex-col h-full"
       >
         <div className="relative h-64 overflow-hidden">
-          <img
+          <WatermarkImage
             src={image}
             alt={category.name}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            watermarkText="NEXTURN PRECISION"
           />
           <div className="absolute top-4 right-4 bg-[#1b365d] text-white text-[10px] font-black px-3 py-1 rounded-md uppercase tracking-widest">
             {category.name}

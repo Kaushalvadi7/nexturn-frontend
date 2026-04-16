@@ -43,6 +43,7 @@ const CountUp = ({ end, duration = 2000, suffix = "" }) => {
   );
 };
 import ExportMap from "./export-regions/ExportMap";
+import WatermarkImage from "../common/WatermarkImage";
 
 const ExportExperience = () => {
   const sectionRef = useRef(null);
@@ -187,10 +188,11 @@ const ExportExperience = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
           <div className="relative reveal-on-scroll opacity-0 [animation-delay:200ms]">
             <div className="rounded-[2rem] overflow-hidden shadow-2xl">
-              <img
+              <WatermarkImage
                 src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=2070"
                 alt="Port Logistics"
                 className="w-full h-[500px] object-cover"
+                watermarkText="NEXTURN PRECISION"
               />
             </div>
             {/* Overlay Box */}

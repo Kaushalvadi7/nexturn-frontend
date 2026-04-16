@@ -43,6 +43,7 @@ const AdminNavbar = () => {
     { name: "Contact Info", path: "/admin/contact-info" },
     { name: "Quality Inspection", path: "/admin/inspection-equipment" },
     { name: "Inquiry", path: "/admin/inquiry" },
+    { name: "Profile Downloads", path: "/admin/profile-downloads" },
     // { name: "Review", path: "/admin/review" },
   ];
 
@@ -90,7 +91,7 @@ const AdminNavbar = () => {
 
 
           {/* Center: Main Nav (Desktop) */}
-          <div className="hidden lg:flex items-center gap-8 h-full">
+          <div className="hidden xl:flex items-center gap-6 h-full">
             {navItems.map((item) => {
               const isActive =
                 location.pathname === item.path ||
@@ -102,7 +103,7 @@ const AdminNavbar = () => {
                 <div key={item.name} className="relative group h-full">
                   <Link
                     to={item.path}
-                    className={`text-xs font-black uppercase tracking-[0.2em] h-full flex items-center gap-1 border-b-2 transition-all cursor-pointer ${isActive ? "border-black text-black" : "border-transparent text-black/50 hover:text-black"}`}
+                    className={`text-[10px] font-black uppercase tracking-[0.2em] h-full flex items-center gap-1 border-b-2 transition-all cursor-pointer whitespace-nowrap ${isActive ? "border-black text-black" : "border-transparent text-black/50 hover:text-black"}`}
                   >
                     {item.name}
                     {item.children && (
@@ -167,7 +168,7 @@ const AdminNavbar = () => {
                 setIsMenuOpen(nextState);
                 if (!nextState) setOpenMobileSubmenu(null);
               }}
-              className="lg:hidden p-2 text-black hover:bg-slate-100 rounded-xl transition-all active:scale-95 cursor-pointer"
+              className="xl:hidden p-2 text-black hover:bg-slate-100 rounded-xl transition-all active:scale-95 cursor-pointer"
             >
               <span className="material-symbols-outlined text-2xl">
                 {isMenuOpen ? "close" : "menu"}
@@ -179,13 +180,13 @@ const AdminNavbar = () => {
 
       {/* Mobile Drawer Overlay */}
       <div
-        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-[105] transition-opacity duration-300 lg:hidden ${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-[105] transition-opacity duration-300 xl:hidden ${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
         onClick={() => setIsMenuOpen(false)}
       ></div>
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`fixed top-16 left-0 right-0 bg-white border-b border-slate-200 z-[106] lg:hidden transform transition-all duration-500 ease-in-out shadow-2xl ${isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0 pointer-events-none"}`}
+        className={`fixed top-16 left-0 right-0 bg-white border-b border-slate-200 z-[106] xl:hidden transform transition-all duration-500 ease-in-out shadow-2xl ${isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0 pointer-events-none"}`}
       >
         <div className="p-6 space-y-4 max-h-[70vh] overflow-y-auto custom-scrollbar">
           {navItems.map((item, idx) => {

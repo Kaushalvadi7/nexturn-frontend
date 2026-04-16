@@ -115,7 +115,7 @@ const MapSection = () => {
                        <h4 className="text-[13px] font-black text-accent uppercase tracking-[0.2em]">{item.label}</h4>
                     </div>
                     
-                    <div className="space-y-4 pt-2 pl-4">
+                    <div className="grid grid-cols-2 gap-4 pt-4 pl-4">
                        {item.points.map((p, pIdx) => (
                          <div key={pIdx} className="flex items-center gap-3">
                             <span className="material-symbols-outlined text-accent text-lg flex-shrink-0">location_on</span>

@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { getProducts } from "../lib/api";
+import WatermarkImage from "../components/common/WatermarkImage";
 import "./VerticalGallery.css";
 import ForSeo from "../components/ForSeo"
 
@@ -208,11 +209,11 @@ const Gallery = () => {
               className="relative w-full h-full flex flex-col items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <WatermarkImage
                 src={selectedImage.url}
                 alt="Enlarged"
                 className="max-w-[95vw] max-h-[85vh] w-auto h-auto object-contain block shadow-2xl rounded-sm"
-                style={{ filter: 'none', opacity: 1, visibility: 'visible' }}
+                watermarkText="NEXTURN PRECISION"
               />
 
               <div className="mt-8 bg-white/5 backdrop-blur-md px-8 py-3 rounded-full border border-white/10 hidden md:block">

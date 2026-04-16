@@ -5,6 +5,7 @@ import { useContactInfo } from "./contactInfo";
 import LeadCaptureModal from "./LeadCaptureModal";
 import BookPreviewModal from "./BookPreviewModal";
 import { createDownloadLead } from "../../lib/api";
+import WatermarkImage from "./WatermarkImage";
 
 const CTACatalogueSection = () => {
   const { hrefs } = useContactInfo();
@@ -455,9 +456,7 @@ const CTACatalogueSection = () => {
                 filter: "drop-shadow(0 24px 40px rgba(0,0,0,0.6))",
               }}
             >
-              <img
-                src="/company_profile.webp"
-                alt="Nexturn Catalogue"
+              <div
                 onClick={() => openLeadModal("company_profile")}
                 style={{
                   width: "160px",
@@ -467,7 +466,13 @@ const CTACatalogueSection = () => {
                   transform: "inherit",
                   cursor: "pointer",
                 }}
-              />
+              >
+                <WatermarkImage
+                  src="/company_profile.webp"
+                  alt="Nexturn Catalogue"
+                  watermarkText="NEXTURN PRECISION"
+                />
+              </div>
             </motion.div>
           </div>
         </div>

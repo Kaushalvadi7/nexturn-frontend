@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { getPerformanceMetrices } from "../../lib/api";
+import WatermarkImage from "../common/WatermarkImage";
 
 const AboutHero = () => {
   const sectionRef = useRef(null);
@@ -120,10 +121,11 @@ const AboutHero = () => {
           {/* Right Content: Image & Floating Card */}
           <div className="relative flex items-center justify-center lg:justify-end reveal-on-scroll reveal-hidden [animation-delay:200ms] lg:pt-16 group">
             <div className="relative z-10 w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border border-white/10">
-              <img 
+              <WatermarkImage 
                 src="/About Us.webp" 
                 alt="Precision Manufacturing Facility" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                watermarkText="NEXTURN PRECISION"
               />
               {/* Image Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>

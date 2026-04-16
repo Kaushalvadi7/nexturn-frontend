@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
+import WatermarkImage from "./common/WatermarkImage";
 
 const getProductImages = (product) => {
   const images = Array.isArray(product?.images) ? product.images : [];
@@ -119,10 +120,11 @@ const ProductDetails = () => {
                     onClick={() => setSelectedImage(img)}
                     className="group cursor-pointer bg-white rounded-2xl md:rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-2xl transition-all duration-500 relative aspect-square"
                   >
-                    <img 
+                    <WatermarkImage 
                       src={img} 
                       alt={`${product.name} ${idx + 1}`} 
-                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" 
+                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+                      watermarkText="NEXTURN PRECISION"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
                       <span className="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 text-4xl">

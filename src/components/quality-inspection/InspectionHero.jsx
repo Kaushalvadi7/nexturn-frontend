@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Link } from "react-router-dom";
+import WatermarkImage from "../common/WatermarkImage";
 
 const InspectionHero = () => {
   return (
@@ -86,10 +87,11 @@ const InspectionHero = () => {
           {/* Right Content: Image */}
           <div className="relative flex items-center justify-center lg:justify-end animate-fade-in-right lg:pt-16 group">
                <div className="relative z-10 w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border border-white/10">
-               <img 
+               <WatermarkImage 
                  src="/01 Quality Heading.webp" 
                  alt="CMM Quality Measurement" 
                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                 watermarkText="NEXTURN PRECISION"
                />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>
              </div> 

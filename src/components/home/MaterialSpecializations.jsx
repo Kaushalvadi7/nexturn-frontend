@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getMaterialSpecializations } from "../../lib/api";
+import WatermarkImage from "../common/WatermarkImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -209,7 +210,7 @@ const MaterialSpecializations = () => {
             {/* Right: Visual Section */}
             <div className="h-[300px] md:h-auto md:flex-[0.8] relative overflow-hidden bg-slate-100 border-t md:border-t-0 md:border-l border-slate-100">
 
-              <img
+              <WatermarkImage
                 src={
                   material.image_url ||
                   material.public_url ||
@@ -217,6 +218,7 @@ const MaterialSpecializations = () => {
                 }
                 alt={material.title}
                 className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 group-hover:rotate-1"
+                watermarkText="NEXTURN PRECISION"
               />
               
               {/* Bottom Badge */}

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { getManufacturingCapabilities } from "../../lib/api";
+import WatermarkImage from "../common/WatermarkImage";
 
 const CountUp = ({ end, duration = 2000, suffix = "" }) => {
   const [count, setCount] = useState(0);
@@ -214,10 +215,11 @@ const Capabilities = () => {
           <div className="reveal-on-scroll reveal-hidden relative group">
             <div className="absolute -inset-4 bg-slate-900/5 rounded-[2rem] blur-2xl group-hover:bg-slate-900/10 transition-colors duration-500"></div>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 shadow-2xl">
-              <img
+              <WatermarkImage
                 src="/Precision Engineering for International Standards.webp"
                 alt="Precision CNC Manufacturing"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                watermarkText="NEXTURN PRECISION"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
             </div>

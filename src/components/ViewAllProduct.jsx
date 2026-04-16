@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getCategories, getProducts } from "../lib/api";
+import WatermarkImage from "./common/WatermarkImage";
 
 const getCategoryImage = (category) => {
   const images = Array.isArray(category?.images) ? category.images : [];
@@ -206,10 +207,11 @@ const ViewAllProduct = () => {
           <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden mb-20">
             <div className="flex flex-col lg:flex-row min-h-[700px]">
               <div className="lg:w-[45%] relative group bg-white flex items-start justify-start p-6 lg:p-10 border-r border-slate-50">
-                <img
+                <WatermarkImage
                   src={getCategoryImage(category)}
                   alt={category.name}
                   className="max-w-full h-auto object-contain object-left-top rounded-2xl transition-transform duration-700 group-hover:scale-105"
+                  watermarkText="NEXTURN PRECISION"
                 />
 
                 {/* <div className="absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/20 rounded-lg">
@@ -395,10 +397,11 @@ const ViewAllProduct = () => {
                 className="bg-white rounded-[1.5rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group flex flex-col h-full"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <img
+                  <WatermarkImage
                     src={image}
                     alt={product.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    watermarkText="NEXTURN PRECISION"
                   />
                   <div className="absolute top-4 right-4 bg-[#1b365d] text-white text-[10px] font-black px-3 py-1 rounded-md uppercase tracking-widest">
                     {product.name}

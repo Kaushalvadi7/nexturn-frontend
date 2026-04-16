@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getCertificates, getCompanyEmployees } from "../../lib/api";
+import WatermarkImage from "../common/WatermarkImage";
 
 const ExpertiseLeadership = () => {
   const sectionRef = useRef(null);
@@ -140,10 +141,11 @@ const ExpertiseLeadership = () => {
             >
               <div className="aspect-[4/3] overflow-hidden bg-slate-200">
                 {leader.image ? (
-                  <img 
+                  <WatermarkImage 
                     src={leader.image} 
                     alt={leader.name} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    watermarkText="NEXTURN PRECISION"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-slate-400">

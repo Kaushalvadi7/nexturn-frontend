@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import WatermarkImage from "../common/WatermarkImage";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -268,10 +269,11 @@ const InspectionProcess = () => {
                     {/* Image Section */}
                     <div className="w-full md:w-1/2">
                       <div className="relative group overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
-                        <img
+                        <WatermarkImage
                           src={stage.image}
                           alt={stage.title}
                           className="w-full aspect-[16/10] object-cover"
+                          watermarkText="NEXTURN PRECISION"
                         />
                         <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500"></div>
                       </div>

@@ -26,6 +26,7 @@ import AdminSuccessStories from "./pages/admin/AdminSuccessStories";
 import AdminInspectionEquipment from "./pages/admin/AdminInspectionEquipment";
 import AdminContactInfo from "./pages/admin/AdminContactInfo";
 import AdminManufacturingFacalities from "./pages/admin/AdminManufacturingFacalities";
+import AdminProfileDownloads from "./pages/admin/AdminProfileDownloads";
 import AdminRouteGuard from "./components/admin/AdminRouteGuard";
 
 import GoogleTranslate from "./components/common/GoogleTranslate";
@@ -58,6 +59,7 @@ function App() {
             <Route path="/admin/product" element={<AdminProduct />} />
             <Route path="/admin/contact-info" element={<AdminContactInfo />} />
             <Route path="/admin/manufacturing-facalities" element={<AdminManufacturingFacalities />} />
+            <Route path="/admin/profile-downloads" element={<AdminProfileDownloads />} />
           </Route>
 
           {/* Public Routes with MainLayout */}
