@@ -88,6 +88,17 @@ export const deleteInquiry = async (id) =>
 export const createDownloadLead = async (payload) =>
   request("/download-leads", { method: "POST", body: JSON.stringify(payload) });
 
+export const getCompanyProfileDownloads = async (params = {}) => {
+  const query = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value === undefined || value === null) return;
+    const normalized = String(value).trim();
+    if (!normalized) return;
+    query.append(key, normalized);
+  });
+  return request(`/admin/company-profile-downloads${query.toString() ? `?${query.toString()}` : ""}`);
+};
+
 export const getCertificates = async () => {
   const response = await request("/certificates");
   return Array.isArray(response) ? response : response?.data || [];
