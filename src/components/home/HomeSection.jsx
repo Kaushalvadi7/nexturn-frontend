@@ -9,7 +9,7 @@ const HomeSection = () => {
     "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070",
     "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=2070",
     "https://images.unsplash.com/photo-1645754884804-a65f5550ec1b?auto=format&fit=crop&q=80&w=2070",
-    "https://images.unsplash.com/photo-1504917595217-d4dc5f5822b3?auto=format&fit=crop&q=80&w=2070"
+    "https://images.unsplash.com/photo-1504917595217-d4dc5f5822b3?auto=format&fit=crop&q=80&w=2070",
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -42,7 +42,8 @@ const HomeSection = () => {
     };
   }, []);
 
-  const images = heroSliderImages.length > 0 ? heroSliderImages : fallbackImages;
+  const images =
+    heroSliderImages.length > 0 ? heroSliderImages : fallbackImages;
 
   useEffect(() => {
     if (images.length <= 1) return undefined;
@@ -66,7 +67,7 @@ const HomeSection = () => {
             icon: item.icon_name || "query_stats",
             value: item.value || "",
             label: item.field || "",
-          }))
+          })),
         );
       } catch {
         if (isActive) setHeroMetrics([]);
@@ -96,13 +97,12 @@ const HomeSection = () => {
                 Engineering Excellence in Precision Metal Components
               </h1>
               <h2 className="text-2xl sm:text-3xl lg:text-2xl font-bold text-accent leading-tight tracking-tight drop-shadow-lg">
-                Manufactured to Your 
-                Exact and Expect Specifications
+                Manufactured to Your Exact and Expect Specifications
               </h2>
             </div>
             <p className="text-lg text-slate-200 max-w-2xl leading-relaxed">
-              Custom turned metal parts with tolerances down to ±0.01mm.
-              Proven export experience to Europe and USA with consistent quality
+              Custom turned metal parts with tolerances down to ±0.01mm. Proven
+              export experience to Europe and USA with consistent quality
               delivery.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-4">
@@ -116,7 +116,9 @@ const HomeSection = () => {
                     <span className="material-symbols-outlined text-orange-400 group-hover:scale-110 transition-transform">
                       {metric.icon}
                     </span>
-                    <span className="text-xl font-bold text-white">{metric.value}</span>
+                    <span className="text-xl font-bold text-white">
+                      {metric.value}
+                    </span>
                   </div>
                   <p className="text-xs text-slate-300 font-medium uppercase tracking-wide">
                     {metric.label}
@@ -129,7 +131,9 @@ const HomeSection = () => {
                 to="/contact-us#quote-form"
                 className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 sm:gap-2 bg-accent hover:bg-orange-700 text-white px-3 py-3.5 sm:px-8 sm:py-4 rounded-lg font-semibold text-sm sm:text-lg shadow-xl shadow-orange-900/20 hover:shadow-orange-500/40 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
               >
-                <span className="material-symbols-outlined text-xl sm:text-2xl">description</span>
+                <span className="material-symbols-outlined text-xl sm:text-2xl">
+                  description
+                </span>
                 <span className="whitespace-nowrap">Request Quote</span>
               </Link>
               <a
@@ -159,7 +163,7 @@ const HomeSection = () => {
                   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
                     index === currentImageIndex ? "opacity-100" : "opacity-0"
                   }`}
-                  watermarkText="NEXTURN PRECISION"
+                  watermarkText="NEXTURN COMPONENTCRAFT"
                 />
               ))}
             </div>
@@ -186,5 +190,3 @@ const HomeSection = () => {
 };
 
 export default HomeSection;
-
-

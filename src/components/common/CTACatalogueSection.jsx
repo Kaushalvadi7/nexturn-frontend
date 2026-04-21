@@ -470,7 +470,7 @@ const CTACatalogueSection = () => {
                 <WatermarkImage
                   src="/company_profile.webp"
                   alt="Nexturn Catalogue"
-                  watermarkText="NEXTURN PRECISION"
+                  watermarkText="NEXTURN COMPONENTCRAFT"
                 />
               </div>
             </motion.div>

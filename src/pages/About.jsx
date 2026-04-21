@@ -5,7 +5,7 @@ import ExpertiseLeadership from "../components/about/ExpertiseLeadership";
 import ManufacturingFacility from "../components/about/ManufacturingFacility";
 import SuccessStories from "../components/about/SuccessStories";
 import HistoryTimeline from "../components/about/HistoryTimeline";
-import ForSeo from "../components/ForSeo"
+import ForSeo from "../components/ForSeo";
 
 const About = () => {
   return (
@@ -17,7 +17,8 @@ const About = () => {
         path="/about-us"
         serviceSchema={{
           serviceName: "About Nexturn Component Craft",
-          serviceDescription: "History, infrastructure, and expertise of Nexturn Component Craft, an ISO 9001:2015 certified component manufacturer.",
+          serviceDescription:
+            "History, infrastructure, and expertise of Nexturn Component Craft, an ISO 9001:2015 certified component manufacturer.",
         }}
       />
       <div className="dark:bg-background-dark">

@@ -37,8 +37,10 @@ const AvailableMaterials = () => {
       className="px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto pt-20 md:pt-12 mb-20"
     >
       <div className="flex justify-between items-end mb-12 gap-4">
-        <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight
-">
+        <h2
+          className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight
+"
+        >
           Available Category
         </h2>
         {/* <span className="text-slate-400 text-sm font-medium">
@@ -48,58 +50,69 @@ const AvailableMaterials = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
         {categories.map((category) => {
-    const image = getCategoryImage(category);
-    return (
-      <div
-        key={category.id}
-        onClick={() => navigate("/product-list", { 
-          state: { categoryId: category.id, categoryName: category.name } 
-        })}
-        className="cursor-pointer bg-white rounded-[1.5rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group flex flex-col h-full"
-      >
-        <div className="relative h-64 overflow-hidden">
-          <WatermarkImage
-            src={image}
-            alt={category.name}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            watermarkText="NEXTURN PRECISION"
-          />
-          <div className="absolute top-4 right-4 bg-[#1b365d] text-white text-[10px] font-black px-3 py-1 rounded-md uppercase tracking-widest">
-            {category.name}
-          </div>
-        </div>
-
-        <div className="p-8 space-y-6 flex-1 flex flex-col min-w-0">
-          <div className="space-y-3">
-            <h3 className="text-xl font-black text-[#1b365d] break-words">
-              {category.name}
-            </h3>
-            <p className="text-slate-500 text-sm leading-relaxed font-medium break-words whitespace-pre-wrap">
-              {category.description || "Custom machined products built for industrial applications."}
-            </p>
-          </div>
-
-          <div className="flex gap-4 pt-4 mt-auto">
-            <Link
-              to="/gallery"
-              onClick={(e) => e.stopPropagation()}
-              state={{ material: { id: category.id, name: category.name, image } }}
-              className="flex-1 bg-white border-2 border-[#1b365d] hover:bg-[#1b365d] hover:text-white text-[#1b365d] py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all cursor-pointer text-center"
+          const image = getCategoryImage(category);
+          return (
+            <div
+              key={category.id}
+              onClick={() =>
+                navigate("/product-list", {
+                  state: {
+                    categoryId: category.id,
+                    categoryName: category.name,
+                  },
+                })
+              }
+              className="cursor-pointer bg-white rounded-[1.5rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group flex flex-col h-full"
             >
-              Gallery
-            </Link>
-            <Link
-              to="/product-list"
-              onClick={(e) => e.stopPropagation()}
-              state={{ categoryId: category.id, categoryName: category.name }}
-              className="flex-1 bg-[#e17000] hover:bg-[#ff8c00] text-white py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-lg shadow-[#e17000]/20 cursor-pointer text-center flex items-center justify-center"
-            >
-              View All Product
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
+              <div className="relative h-64 overflow-hidden">
+                <WatermarkImage
+                  src={image}
+                  alt={category.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  watermarkText="NEXTURN COMPONENTCRAFT"
+                />
+                <div className="absolute top-4 right-4 bg-[#1b365d] text-white text-[10px] font-black px-3 py-1 rounded-md uppercase tracking-widest">
+                  {category.name}
+                </div>
+              </div>
+
+              <div className="p-8 space-y-6 flex-1 flex flex-col min-w-0">
+                <div className="space-y-3">
+                  <h3 className="text-xl font-black text-[#1b365d] break-words">
+                    {category.name}
+                  </h3>
+                  <p className="text-slate-500 text-sm leading-relaxed font-medium break-words whitespace-pre-wrap">
+                    {category.description ||
+                      "Custom machined products built for industrial applications."}
+                  </p>
+                </div>
+
+                <div className="flex gap-4 pt-4 mt-auto">
+                  <Link
+                    to="/gallery"
+                    onClick={(e) => e.stopPropagation()}
+                    state={{
+                      material: { id: category.id, name: category.name, image },
+                    }}
+                    className="flex-1 bg-white border-2 border-[#1b365d] hover:bg-[#1b365d] hover:text-white text-[#1b365d] py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all cursor-pointer text-center"
+                  >
+                    Gallery
+                  </Link>
+                  <Link
+                    to="/product-list"
+                    onClick={(e) => e.stopPropagation()}
+                    state={{
+                      categoryId: category.id,
+                      categoryName: category.name,
+                    }}
+                    className="flex-1 bg-[#e17000] hover:bg-[#ff8c00] text-white py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-lg shadow-[#e17000]/20 cursor-pointer text-center flex items-center justify-center"
+                  >
+                    View All Product
+                  </Link>
+                </div>
+              </div>
+            </div>
+          );
         })}
       </div>
 

@@ -145,7 +145,7 @@ const ExpertiseLeadership = () => {
                     src={leader.image} 
                     alt={leader.name} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    watermarkText="NEXTURN PRECISION"
+                    watermarkText="NEXTURN COMPONENTCRAFT"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-slate-400">

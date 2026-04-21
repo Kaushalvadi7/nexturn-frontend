@@ -53,9 +53,12 @@ const ProductDetails = () => {
       <div className="bg-[#fafbfc] min-h-screen pt-20 md:pt-32 pb-20 font-['Source_Sans_3',sans-serif]">
         <section className="px-4 sm:px-6 lg:px-8 max-w-[960px] mx-auto">
           <div className="bg-white rounded-[2rem] border border-slate-100 shadow-sm p-8 md:p-12 text-center space-y-4">
-            <h1 className="text-2xl md:text-3xl font-black text-[#1E3A5F]">Product not available</h1>
+            <h1 className="text-2xl md:text-3xl font-black text-[#1E3A5F]">
+              Product not available
+            </h1>
             <p className="text-slate-500 text-sm md:text-base font-medium">
-              Open this page from the product list to load the selected product details.
+              Open this page from the product list to load the selected product
+              details.
             </p>
             <div className="pt-2">
               <Link
@@ -75,10 +78,24 @@ const ProductDetails = () => {
     <div className="bg-[#fafbfc] min-h-screen pt-16 md:pt-20 pb-16 font-['Source_Sans_3',sans-serif]">
       <section className="px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto">
         <nav className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
-          <Link to="/" className="hover:text-[#1E3A5F] transition-colors flex-shrink-0">Home</Link>
-          <span className="material-symbols-outlined text-[10px] flex-shrink-0">chevron_right</span>
-          <Link to="/product-list" className="hover:text-[#1E3A5F] transition-colors flex-shrink-0">Products</Link>
-          <span className="material-symbols-outlined text-[10px] flex-shrink-0">chevron_right</span>
+          <Link
+            to="/"
+            className="hover:text-[#1E3A5F] transition-colors flex-shrink-0"
+          >
+            Home
+          </Link>
+          <span className="material-symbols-outlined text-[10px] flex-shrink-0">
+            chevron_right
+          </span>
+          <Link
+            to="/product-list"
+            className="hover:text-[#1E3A5F] transition-colors flex-shrink-0"
+          >
+            Products
+          </Link>
+          <span className="material-symbols-outlined text-[10px] flex-shrink-0">
+            chevron_right
+          </span>
           <span className="text-[#1E3A5F] flex-shrink-0">{product.name}</span>
         </nav>
 
@@ -100,7 +117,7 @@ const ProductDetails = () => {
             <div className="flex shrink-0 lg:ml-8">
               {product.category?.name && (
                 <span className="text-[#e17000] text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] bg-[#e17000]/5 px-3 py-1.5 rounded-lg border border-[#e17000]/10">
-                 Category : {product.category.name}
+                  Category : {product.category.name}
                 </span>
               )}
             </div>
@@ -111,20 +128,20 @@ const ProductDetails = () => {
             <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#e17000] border-b border-slate-100 pb-4">
               Product Showcase
             </h2>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {images.length > 0 ? (
                 images.map((img, idx) => (
-                  <div 
-                    key={`${img}-${idx}`} 
+                  <div
+                    key={`${img}-${idx}`}
                     onClick={() => setSelectedImage(img)}
                     className="group cursor-pointer bg-white rounded-2xl md:rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-2xl transition-all duration-500 relative aspect-square"
                   >
-                    <WatermarkImage 
-                      src={img} 
-                      alt={`${product.name} ${idx + 1}`} 
+                    <WatermarkImage
+                      src={img}
+                      alt={`${product.name} ${idx + 1}`}
                       className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
-                      watermarkText="NEXTURN PRECISION"
+                      watermarkText="NEXTURN COMPONENTCRAFT"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
                       <span className="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 text-4xl">
@@ -135,20 +152,26 @@ const ProductDetails = () => {
                 ))
               ) : (
                 <div className="col-span-full bg-slate-50 rounded-[2rem] border border-dashed border-slate-200 p-12 text-center">
-                  <span className="material-symbols-outlined text-slate-300 text-5xl mb-4">image_not_supported</span>
-                  <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">No images available for this product</p>
+                  <span className="material-symbols-outlined text-slate-300 text-5xl mb-4">
+                    image_not_supported
+                  </span>
+                  <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">
+                    No images available for this product
+                  </p>
                 </div>
               )}
             </div>
           </div>
-          
+
           {/* Action Section */}
           <div className="flex flex-col sm:flex-row gap-4 pt-12 border-t border-slate-100">
             <Link
               to="/contact-us#quote-form"
               className="px-10 py-5 bg-[#1E3A5F] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#12243d] transition-all shadow-xl shadow-[#1E3A5F]/20 flex items-center justify-center gap-4 group"
             >
-              <span className="material-symbols-outlined text-xl group-hover:rotate-12 transition-transform">send</span>
+              <span className="material-symbols-outlined text-xl group-hover:rotate-12 transition-transform">
+                send
+              </span>
               Request Quote
             </Link>
             <Link
@@ -162,28 +185,34 @@ const ProductDetails = () => {
       </section>
 
       {/* Lightbox Modal using Portal */}
-      {selectedImage && createPortal(
-        <div 
-          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 md:p-12 animate-in fade-in zoom-in duration-300"
-          onClick={() => setSelectedImage(null)}
-        >
-          <button
+      {selectedImage &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 md:p-12 animate-in fade-in zoom-in duration-300"
             onClick={() => setSelectedImage(null)}
-            className="fixed top-6 right-6 md:top-12 md:right-12 bg-white/10 hover:bg-white/20 text-white rounded-full p-4 transition-all z-[10000] backdrop-blur-xl border border-white/10 flex items-center justify-center group shadow-2xl"
           >
-            <span className="material-symbols-outlined text-2xl font-bold group-hover:rotate-90 transition-transform duration-300">close</span>
-          </button>
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="fixed top-6 right-6 md:top-12 md:right-12 bg-white/10 hover:bg-white/20 text-white rounded-full p-4 transition-all z-[10000] backdrop-blur-xl border border-white/10 flex items-center justify-center group shadow-2xl"
+            >
+              <span className="material-symbols-outlined text-2xl font-bold group-hover:rotate-90 transition-transform duration-300">
+                close
+              </span>
+            </button>
 
-          <div className="w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={selectedImage}
-              alt={product.name}
-              className="max-w-[95vw] max-h-[85vh] md:max-h-[90vh] object-contain rounded-lg md:rounded-2xl shadow-2xl animate-in slide-in-from-bottom-8 duration-500"
-            />
-          </div>
-        </div>,
-        document.body
-      )}
+            <div
+              className="w-full h-full flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={selectedImage}
+                alt={product.name}
+                className="max-w-[95vw] max-h-[85vh] md:max-h-[90vh] object-contain rounded-lg md:rounded-2xl shadow-2xl animate-in slide-in-from-bottom-8 duration-500"
+              />
+            </div>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 };

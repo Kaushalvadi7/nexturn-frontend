@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { getProducts } from "../lib/api";
 import WatermarkImage from "../components/common/WatermarkImage";
 import "./VerticalGallery.css";
-import ForSeo from "../components/ForSeo"
+import ForSeo from "../components/ForSeo";
 
 const Gallery = () => {
   const location = useLocation();
@@ -62,9 +62,10 @@ const Gallery = () => {
     normalizedMaterialId === "All" || Number.isNaN(normalizedMaterialId)
       ? products
       : products.filter((product) => {
-        const productCategoryId = product.category_id ?? product.category?.id ?? null;
-        return Number(productCategoryId) === normalizedMaterialId;
-      });
+          const productCategoryId =
+            product.category_id ?? product.category?.id ?? null;
+          return Number(productCategoryId) === normalizedMaterialId;
+        });
 
   const galleryItems = filteredProducts.flatMap((product) => {
     const images = Array.isArray(product?.images) ? product.images : [];
@@ -115,7 +116,8 @@ const Gallery = () => {
         path="/gallery"
         serviceSchema={{
           serviceName: "Precision Engineering Portfolio",
-          serviceDescription: "Visual gallery showcasing our high-quality CNC machined and custom metal components.",
+          serviceDescription:
+            "Visual gallery showcasing our high-quality CNC machined and custom metal components.",
         }}
       />
       <div className="bg-[#fafbfc] min-h-screen pt-18 pb-20 font-['Source_Sans_3',sans-serif]">
@@ -127,13 +129,15 @@ const Gallery = () => {
                 onClick={() => navigate(-1)}
                 className="w-fit flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 text-[#1b365d] rounded-xl font-bold text-sm hover:bg-slate-50 transition-all shadow-sm group cursor-pointer"
               >
-                <span className="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                <span className="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">
+                  arrow_back
+                </span>
                 Back to Products
               </button>
               <div className="h-10 w-[1px] bg-slate-200 hidden sm:block"></div>
               <div className="space-y-1">
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-[#1b365d] tracking-tight">
-                  {material.name} 
+                  {material.name}
                 </h1>
                 <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest flex items-center gap-2 text-slate-500">
                   <span className="w-3 sm:w-4 h-[1.5px] sm:h-[2px] bg-[#e17000]"></span>
@@ -147,7 +151,9 @@ const Gallery = () => {
 
           {loadError && (
             <div className="mb-10 bg-white rounded-[2rem] border border-slate-100 shadow-sm px-8 py-6 text-slate-600">
-              <p className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-2">Unable to load gallery</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-2">
+                Unable to load gallery
+              </p>
               <p className="text-sm font-medium">{loadError}</p>
             </div>
           )}
@@ -168,7 +174,9 @@ const Gallery = () => {
                 </div> */}
 
                   <div className="gallery-container !w-full !max-w-none h-auto md:!h-[550px]">
-                    <div className={`gallery-wrap wrap-effect-${(chunkIndex % 4) + 1}`}>
+                    <div
+                      className={`gallery-wrap wrap-effect-${(chunkIndex % 4) + 1}`}
+                    >
                       {chunk.map((item, index) => (
                         <div
                           key={`${item.productId}-${chunkIndex}-${index}`}
@@ -187,51 +195,60 @@ const Gallery = () => {
           {isLoading && (
             <div className="text-center py-32 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-center">
               <div className="w-16 h-16 border-4 border-slate-100 border-t-orange-500 rounded-full animate-spin mb-6"></div>
-              <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">Synchronizing Gallery Assets</p>
+              <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">
+                Synchronizing Gallery Assets
+              </p>
             </div>
           )}
 
           {!isLoading && galleryItems.length === 0 && (
             <div className="text-center py-20 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm">
-              <span className="material-symbols-outlined text-6xl text-slate-200 mb-4">image_not_supported</span>
-              <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">No product images available for this category</p>
+              <span className="material-symbols-outlined text-6xl text-slate-200 mb-4">
+                image_not_supported
+              </span>
+              <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">
+                No product images available for this category
+              </p>
             </div>
           )}
         </div>
 
         {/* Lightbox Modal rendered via Portal to escape any parent CSS context */}
-        {selectedImage && createPortal(
-          <div
-            className="fixed inset-0 z-[9999999] bg-black/98 flex flex-col items-center justify-center p-2 sm:p-10"
-            onClick={() => setSelectedImage(null)}
-          >
+        {selectedImage &&
+          createPortal(
             <div
-              className="relative w-full h-full flex flex-col items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <WatermarkImage
-                src={selectedImage.url}
-                alt="Enlarged"
-                className="max-w-[95vw] max-h-[85vh] w-auto h-auto object-contain block shadow-2xl rounded-sm"
-                watermarkText="NEXTURN PRECISION"
-              />
-
-              <div className="mt-8 bg-white/5 backdrop-blur-md px-8 py-3 rounded-full border border-white/10 hidden md:block">
-                <p className="text-white text-[11px] font-black uppercase tracking-[0.4em] opacity-80">
-                  {selectedImage.productName}
-                </p>
-              </div>
-            </div>
-
-            <button
-              className="absolute top-8 right-8 text-white/50 hover:text-white transition-all cursor-pointer z-50 p-4"
+              className="fixed inset-0 z-[9999999] bg-black/98 flex flex-col items-center justify-center p-2 sm:p-10"
               onClick={() => setSelectedImage(null)}
             >
-              <span className="material-symbols-outlined text-5xl">close</span>
-            </button>
-          </div>,
-          document.body
-        )}
+              <div
+                className="relative w-full h-full flex flex-col items-center justify-center"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <WatermarkImage
+                  src={selectedImage.url}
+                  alt="Enlarged"
+                  className="max-w-[95vw] max-h-[85vh] w-auto h-auto object-contain block shadow-2xl rounded-sm"
+                  watermarkText="NEXTURN COMPONENTCRAFT"
+                />
+
+                <div className="mt-8 bg-white/5 backdrop-blur-md px-8 py-3 rounded-full border border-white/10 hidden md:block">
+                  <p className="text-white text-[11px] font-black uppercase tracking-[0.4em] opacity-80">
+                    {selectedImage.productName}
+                  </p>
+                </div>
+              </div>
+
+              <button
+                className="absolute top-8 right-8 text-white/50 hover:text-white transition-all cursor-pointer z-50 p-4"
+                onClick={() => setSelectedImage(null)}
+              >
+                <span className="material-symbols-outlined text-5xl">
+                  close
+                </span>
+              </button>
+            </div>,
+            document.body,
+          )}
       </div>
     </>
   );

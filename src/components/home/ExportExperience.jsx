@@ -113,7 +113,7 @@ const ExportExperience = () => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -132,12 +132,17 @@ const ExportExperience = () => {
         const data = await getRegions();
         if (!isActive) return;
 
-        const normalized = (Array.isArray(data) ? data : []).reduce((acc, row) => {
-          const countryCode = String(row?.country_code || row?.country || "").trim().toUpperCase();
-          if (!/^[A-Z]{2}$/.test(countryCode)) return acc;
-          acc[countryCode] = true;
-          return acc;
-        }, {});
+        const normalized = (Array.isArray(data) ? data : []).reduce(
+          (acc, row) => {
+            const countryCode = String(row?.country_code || row?.country || "")
+              .trim()
+              .toUpperCase();
+            if (!/^[A-Z]{2}$/.test(countryCode)) return acc;
+            acc[countryCode] = true;
+            return acc;
+          },
+          {},
+        );
 
         setServedRegionsData(normalized);
       } catch {
@@ -155,15 +160,18 @@ const ExportExperience = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="pt-0 pb-24 bg-slate-50 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="pt-0 pb-24 bg-slate-50 overflow-hidden"
+    >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 reveal-on-scroll opacity-0">
           <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
             Proven Export Experience
           </h2>
           <p className="text-[18px] text-slate-600 leading-relaxed">
-            Reliable international shipping with complete documentation and customs compliance for hassle-free
-            delivery.
+            Reliable international shipping with complete documentation and
+            customs compliance for hassle-free delivery.
           </p>
         </div>
 
@@ -180,7 +188,9 @@ const ExportExperience = () => {
               <h3 className="text-2xl sm:text-4xl font-bold text-slate-900 mb-1 sm:mb-2">
                 <CountUp end={stat.end} suffix={stat.suffix} />
               </h3>
-              <p className="text-slate-500 font-bold text-[10px] sm:text-sm uppercase tracking-wider">{stat.label}</p>
+              <p className="text-slate-500 font-bold text-[10px] sm:text-sm uppercase tracking-wider">
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>
@@ -192,18 +202,24 @@ const ExportExperience = () => {
                 src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=2070"
                 alt="Port Logistics"
                 className="w-full h-[500px] object-cover"
-                watermarkText="NEXTURN PRECISION"
+                watermarkText="NEXTURN COMPONENTCRAFT"
               />
             </div>
             {/* Overlay Box */}
             <div className="absolute bottom-6 left-3 bg-transparent px-5 py-3.5 sm:p-5 rounded-2xl max-w-xs md:max-w-sm reveal-on-scroll opacity-0 [animation-delay:400ms]">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30">
-                  <span className="material-symbols-outlined text-white text-2xl font-bold">package_2</span>
+                  <span className="material-symbols-outlined text-white text-2xl font-bold">
+                    package_2
+                  </span>
                 </div>
                 <div>
-                  <h4 className="text-xl font-extrabold text-white">Secure Packaging</h4>
-                  <p className="text-white/80 text-sm font-medium">Export-grade packaging standards</p>
+                  <h4 className="text-xl font-extrabold text-white">
+                    Secure Packaging
+                  </h4>
+                  <p className="text-white/80 text-sm font-medium">
+                    Export-grade packaging standards
+                  </p>
                 </div>
               </div>
             </div>
@@ -215,16 +231,23 @@ const ExportExperience = () => {
                 Seamless Export Solutions For Global Partners
               </h2>
               <p className="text-slate-600 text-lg leading-relaxed">
-                We handle all export documentation, customs clearance, and international shipping logistics. Our
-                experienced team ensures smooth delivery with full compliance to international trade regulations.
+                We handle all export documentation, customs clearance, and
+                international shipping logistics. Our experienced team ensures
+                smooth delivery with full compliance to international trade
+                regulations.
               </p>
             </div>
 
             <div className="space-y-6">
               {features.map((feature, index) => (
-                <div key={index} className="flex gap-6 group hover:translate-x-2 transition-transform duration-300">
+                <div
+                  key={index}
+                  className="flex gap-6 group hover:translate-x-2 transition-transform duration-300"
+                >
                   <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-slate-900/20">
-                    <span className="material-symbols-outlined text-white text-2xl">{feature.icon}</span>
+                    <span className="material-symbols-outlined text-white text-2xl">
+                      {feature.icon}
+                    </span>
                   </div>
                   <div>
                     <h4 className="text-xl font-semibold text-slate-900 mb-1 group-hover:text-blue-900 transition-colors">
@@ -242,8 +265,16 @@ const ExportExperience = () => {
           id="regions-we-serve"
           className="scroll-mt-24 reveal-on-scroll reveal-hidden text-center mb-16 lg:mb-20 max-w-7xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">Regions We Serve</h2>
-          <p className="text-[18px] text-slate-600 leading-relaxed mb-10">Our reach is in global; our quality is universal. This map showcases the diverse international markets that trust Nexturn Componentcraft for their critical engineering needs. As we scale our operations, we remain dedicated to bridging the gap between Indian manufacturing expertise and global industrial requirements.</p>
+          <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
+            Regions We Serve
+          </h2>
+          <p className="text-[18px] text-slate-600 leading-relaxed mb-10">
+            Our reach is in global; our quality is universal. This map showcases
+            the diverse international markets that trust Nexturn Componentcraft
+            for their critical engineering needs. As we scale our operations, we
+            remain dedicated to bridging the gap between Indian manufacturing
+            expertise and global industrial requirements.
+          </p>
           <ExportMap servedRegions={servedRegionsData} />
         </div>
       </div>

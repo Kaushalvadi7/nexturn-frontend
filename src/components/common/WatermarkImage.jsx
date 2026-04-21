@@ -1,6 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 
-const WatermarkImage = ({ src, alt, className, watermarkText = "NEXTURN" }) => {
+const WatermarkImage = ({
+  src,
+  alt,
+  className,
+  watermarkText = "NEXTURN COMPONENTCRAFT",
+}) => {
   const canvasRef = useRef(null);
   const imgRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -51,15 +56,29 @@ const WatermarkImage = ({ src, alt, className, watermarkText = "NEXTURN" }) => {
     };
   }, [src]);
 
-  // When user right-clicks, we quickly add the watermark before the save menu opens
-  const handleContextMenu = () => {
+  const forceLogoDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/nexturn.png";
+    link.download = "nexturn.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Intercept right-click save and force logo download instead
+  const handleContextMenu = (event) => {
+    event.preventDefault();
     draw(true);
-    // Switch back after context menu is likely closed
+    forceLogoDownload();
     setTimeout(() => draw(false), 2000);
   };
 
   return (
-    <div className={`overflow-hidden ${className}`} onContextMenu={handleContextMenu}>
+    <div
+      className={`overflow-hidden ${className}`}
+      onContextMenu={handleContextMenu}
+      onDragStart={(event) => event.preventDefault()}
+    >
       {/* The Canvas hides the 'src' URL from Inspect Element */}
       <canvas
         ref={canvasRef}
@@ -71,9 +90,11 @@ const WatermarkImage = ({ src, alt, className, watermarkText = "NEXTURN" }) => {
         }}
         title={alt}
       />
-      
+
       {/* Loading state to prevent white box */}
-      {!isLoaded && <div className="w-full h-full bg-slate-100 animate-pulse" />}
+      {!isLoaded && (
+        <div className="w-full h-full bg-slate-100 animate-pulse" />
+      )}
     </div>
   );
 };

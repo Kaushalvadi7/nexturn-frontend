@@ -219,7 +219,7 @@ const Capabilities = () => {
                 src="/Precision Engineering for International Standards.webp"
                 alt="Precision CNC Manufacturing"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                watermarkText="NEXTURN PRECISION"
+                watermarkText="NEXTURN COMPONENTCRAFT"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
             </div>

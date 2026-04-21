@@ -29,8 +29,7 @@ const inspectionStages = [
     subtitle: "Stage 2",
     description:
       'We produce a "First-Off" sample at the start of every new batch. This part is strictly measured against your technical drawings using high-precision equipment like CMM or profile projectors to ensure 100% specification compliance before the full machine run starts.',
-    image:
-      "/First-Article Inspection (FAI).webp",
+    image: "/First-Article Inspection (FAI).webp",
     items: [
       "100% dimensional check against blueprints.",
       "Prevents errors before mass production begins.",
@@ -42,9 +41,8 @@ const inspectionStages = [
     title: "In-Process Inspection",
     subtitle: "Stage 3",
     description:
-      'Quality is monitored in real-time. Our operators perform periodic checks during the machining process to ensure the equipment is maintaining micron-level tolerances',
-    image:
-      "/In-Process Inspection.webp",
+      "Quality is monitored in real-time. Our operators perform periodic checks during the machining process to ensure the equipment is maintaining micron-level tolerances",
+    image: "/In-Process Inspection.webp",
     items: [
       "Continuous monitoring to prevent tool wear errors.",
       "Maintains consistency across high-volume bulk orders.",
@@ -58,8 +56,7 @@ const inspectionStages = [
     subtitle: "Stage 4",
     description:
       "Comprehensive dimensional and visual inspection of completed components before secondary operations or final packaging.",
-    image:
-      "/Post-Machining Inspection.webp",
+    image: "/Post-Machining Inspection.webp",
     items: [
       "Complete dimensional verification",
       "Thread gauge inspection",
@@ -74,8 +71,7 @@ const inspectionStages = [
     subtitle: "Stage 5",
     description:
       "Quality verification after threading, knurling, drilling, or other secondary operations to ensure specification compliance.",
-    image:
-      "/Secondary Operations QC.webp",
+    image: "/Secondary Operations QC.webp",
     items: [
       "Thread pitch and depth verification",
       "Knurling pattern consistency",
@@ -90,8 +86,7 @@ const inspectionStages = [
     subtitle: "Stage 6",
     description:
       "Complete quality audit with measurement reports and certification before shipment approval. All metal components are verified for total alignment with your engineering specifications.",
-    image:
-      "/Final Inspection & Documentation.webp",
+    image: "/Final Inspection & Documentation.webp",
     items: [
       "100% visual inspection.",
       "Random dimensional sampling.",
@@ -103,7 +98,6 @@ const inspectionStages = [
 ];
 
 const InspectionProcess = () => {
-
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
   const slidesContainerRef = useRef(null);
@@ -117,7 +111,7 @@ const InspectionProcess = () => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -127,7 +121,8 @@ const InspectionProcess = () => {
 
     const fallbackTimer = setTimeout(() => {
       if (sectionRef.current) {
-        const elements = sectionRef.current.querySelectorAll(".reveal-on-scroll");
+        const elements =
+          sectionRef.current.querySelectorAll(".reveal-on-scroll");
         elements.forEach((el) => el.classList.add("reveal-visible"));
       }
     }, 1000);
@@ -141,31 +136,31 @@ const InspectionProcess = () => {
   useLayoutEffect(() => {
     if (!containerRef.current || !slidesContainerRef.current) return;
 
-    const slides = gsap.utils.toArray('.inspection-slide');
-    
+    const slides = gsap.utils.toArray(".inspection-slide");
+
     // The sticky scroll timeline
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top top", 
-        end: "bottom bottom", 
+        start: "top top",
+        end: "bottom bottom",
         scrub: 1.2,
         pin: slidesContainerRef.current,
         pinSpacing: false,
         anticipatePin: 1,
-      }
+      },
     });
 
     // Set initial state for slides (except the first one)
     slides.forEach((slide, i) => {
       if (i === 0) return;
       const stage = inspectionStages[i];
-      
+
       // Alternate initial clip paths based on layout to match reference
       if (stage.layout === "image-right") {
-        gsap.set(slide, { clipPath: 'inset(0% 0% 0% 100%)' }); // Hide to the right
+        gsap.set(slide, { clipPath: "inset(0% 0% 0% 100%)" }); // Hide to the right
       } else {
-        gsap.set(slide, { clipPath: 'inset(0% 100% 0% 0%)' }); // Hide to the left
+        gsap.set(slide, { clipPath: "inset(0% 100% 0% 0%)" }); // Hide to the left
       }
     });
 
@@ -176,19 +171,21 @@ const InspectionProcess = () => {
       const startTime = (i / inspectionStages.length) * inspectionStages.length;
 
       // Slide Reveal (Alternating Wipe)
-      tl.to(slide, 
+      tl.to(
+        slide,
         {
-          clipPath: 'inset(0% 0% 0% 0%)',
+          clipPath: "inset(0% 0% 0% 0%)",
           ease: "power2.inOut",
         },
-        startTime
+        startTime,
       );
 
       // Parallax content effect
-      const content = slide.querySelector('.slide-content');
+      const content = slide.querySelector(".slide-content");
       const xOffset = stage.layout === "image-right" ? 100 : -100;
-      
-      tl.fromTo(content,
+
+      tl.fromTo(
+        content,
         { x: xOffset, opacity: 0, scale: 0.95 },
         {
           x: 0,
@@ -196,7 +193,7 @@ const InspectionProcess = () => {
           scale: 1,
           ease: "power2.out",
         },
-        startTime + 0.1
+        startTime + 0.1,
       );
     });
 
@@ -205,8 +202,6 @@ const InspectionProcess = () => {
       tl.kill();
     };
   }, [inspectionStages.length]);
-
-
 
   return (
     <section ref={sectionRef} className="pt-3 bg-slate-50">
@@ -224,18 +219,18 @@ const InspectionProcess = () => {
         </div>
       </div>
 
-
       {/* Sticky Slide Animation Section */}
-      <div ref={containerRef} className="relative w-full h-[510vh] bg-white overflow-hidden">
-        
+      <div
+        ref={containerRef}
+        className="relative w-full h-[510vh] bg-white overflow-hidden"
+      >
         {/* The inner container that GSAP will lock to the screen */}
-        <div ref={slidesContainerRef} className="h-screen w-full flex flex-col relative overflow-hidden">
-          
+        <div
+          ref={slidesContainerRef}
+          className="h-screen w-full flex flex-col relative overflow-hidden"
+        >
           {/* Desktop Header Section (Persistent & Non-Absolute) */}
           <div className="hidden md:block w-full z-[70] pt-20 pb-8 px-6 lg:px-[5%] bg-white/80 backdrop-blur-md">
-
-
-
             <div className="scroll-mt-24 reveal-on-scroll reveal-hidden text-center max-w-7xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">
                 Six-Stage Inspection Process
@@ -273,7 +268,7 @@ const InspectionProcess = () => {
                           src={stage.image}
                           alt={stage.title}
                           className="w-full aspect-[16/10] object-cover"
-                          watermarkText="NEXTURN PRECISION"
+                          watermarkText="NEXTURN COMPONENTCRAFT"
                         />
                         <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500"></div>
                       </div>
@@ -285,8 +280,6 @@ const InspectionProcess = () => {
                       <div className="absolute -top-8 left-8 md:-top-14 md:left-5 text-[80px] md:text-[140px] font-black text-slate-100 select-none pointer-events-none z-0 leading-none">
                         0{index + 1}
                       </div>
-
-
 
                       <div className="space-y-4 md:space-y-6 relative z-10">
                         <div>
@@ -304,8 +297,6 @@ const InspectionProcess = () => {
                           </p>
 
                           <ul className="grid grid-cols-1 gap-2 md:gap-5">
-
-
                             {stage.items.map((item, idx) => (
                               <li key={idx} className="flex items-start gap-3">
                                 <div className="mt-1.5 min-w-[20px] h-[20px] rounded-full bg-green-100 flex items-center justify-center">
@@ -326,7 +317,6 @@ const InspectionProcess = () => {
                                 <span className="text-secondary font-medium text-sm md:text-base">
                                   {item}
                                 </span>
-
                               </li>
                             ))}
                           </ul>
@@ -340,7 +330,6 @@ const InspectionProcess = () => {
           </div>
         </div>
 
-        
         {/* Scroll Indicator */}
         <div className="absolute bottom-10 right-10 z-[100] flex flex-col items-end gap-2 text-slate-400 font-mono text-[10px] tracking-widest uppercase pointer-events-none">
           <div className="flex gap-2">
@@ -352,7 +341,6 @@ const InspectionProcess = () => {
         </div>
       </div>
     </section>
-
   );
 };
 
