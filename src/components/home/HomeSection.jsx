@@ -6,10 +6,7 @@ import WatermarkImage from "../common/WatermarkImage";
 
 const HomeSection = () => {
   const fallbackImages = [
-    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070",
-    "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=2070",
-    "https://images.unsplash.com/photo-1645754884804-a65f5550ec1b?auto=format&fit=crop&q=80&w=2070",
-    "https://images.unsplash.com/photo-1504917595217-d4dc5f5822b3?auto=format&fit=crop&q=80&w=2070",
+    "/nexturn.png",
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
