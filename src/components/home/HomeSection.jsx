@@ -6,7 +6,7 @@ import WatermarkImage from "../common/WatermarkImage";
 
 const HomeSection = () => {
   const fallbackImages = [
-    "/nexturn.png",
+    "https://res.cloudinary.com/dee7ivwto/image/upload/v1776795898/IMG-20260307-WA0010_pwh75l.jpg",
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
