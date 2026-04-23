@@ -31,11 +31,13 @@ import AdminRouteGuard from "./components/admin/AdminRouteGuard";
 
 import GoogleTranslate from "./components/common/GoogleTranslate";
 import { ToastProvider } from "./contexts/ToastContext";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
     <ToastProvider>
       <Router>
+        <Analytics />
         <GoogleTranslate />
         <ScrollToTop />
         <MetaTags />

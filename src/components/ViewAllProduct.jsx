@@ -56,6 +56,7 @@ const ViewAllProduct = () => {
   const [activeTab, setActiveTab] = useState("applications");
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -75,6 +76,8 @@ const ViewAllProduct = () => {
         console.error("Failed to load product listing data", error);
         setCategories([]);
         setProducts([]);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -203,7 +206,30 @@ const ViewAllProduct = () => {
           </div>
         </div>
 
-        {category && (
+        {isLoading ? (
+          <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden mb-20 animate-pulse">
+            <div className="flex flex-col lg:flex-row min-h-[700px]">
+              <div className="lg:w-[45%] bg-slate-200 p-6 lg:p-10 border-r border-slate-50 min-h-[400px]"></div>
+              <div className="lg:w-[55%] pt-5 pb-8 px-8 lg:pt-10 lg:pb-14 lg:px-14 flex flex-col min-w-0">
+                <div className="h-4 bg-slate-200 rounded w-48 mb-6"></div>
+                <div className="h-10 bg-slate-200 rounded w-3/4 mb-6 mt-4"></div>
+                <div className="h-24 bg-slate-200 rounded w-full mb-8 mt-2"></div>
+                <div className="flex gap-6 mb-8 mt-4 border-b border-slate-100 pb-4">
+                  <div className="h-6 bg-slate-200 rounded w-20"></div>
+                  <div className="h-6 bg-slate-200 rounded w-24"></div>
+                  <div className="h-6 bg-slate-200 rounded w-20"></div>
+                </div>
+                <div className="space-y-4">
+                  <div className="h-12 bg-slate-200 rounded-2xl w-full"></div>
+                  <div className="h-12 bg-slate-200 rounded-2xl w-full"></div>
+                </div>
+                <div className="pt-10 mt-auto">
+                  <div className="h-14 bg-slate-200 rounded-xl w-48"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : category && (
           <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden mb-20">
             <div className="flex flex-col lg:flex-row min-h-[700px]">
               <div className="lg:w-[45%] relative group bg-white flex items-start justify-start p-6 lg:p-10 border-r border-slate-50">
@@ -387,7 +413,20 @@ const ViewAllProduct = () => {
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {filteredProducts.map((product) => {
+          {isLoading ? (
+            [1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="bg-white rounded-[1.5rem] overflow-hidden border border-slate-100 shadow-sm h-[450px] animate-pulse flex flex-col">
+                <div className="h-64 bg-slate-200 w-full"></div>
+                <div className="p-8 space-y-6 flex-1 flex flex-col">
+                  <div className="h-6 bg-slate-200 rounded w-3/4"></div>
+                  <div className="h-16 bg-slate-200 rounded w-full mt-4"></div>
+                  <div className="mt-auto pt-4">
+                    <div className="h-12 bg-slate-200 rounded-xl w-full"></div>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : filteredProducts.map((product) => {
             const image = getProductImage(product);
             const specifications = product.specifications || {};
 
