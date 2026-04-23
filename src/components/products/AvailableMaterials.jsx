@@ -15,6 +15,7 @@ const getCategoryImage = (category) => {
 const AvailableMaterials = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -25,6 +26,8 @@ const AvailableMaterials = () => {
       } catch (error) {
         console.error("Failed to load categories", error);
         setCategories([]);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -49,7 +52,24 @@ const AvailableMaterials = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-        {categories.map((category) => {
+        {isLoading ? (
+          [1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="bg-white rounded-[1.5rem] overflow-hidden border border-slate-100 shadow-sm h-full flex flex-col animate-pulse">
+              <div className="h-64 bg-slate-200 w-full"></div>
+              <div className="p-8 space-y-6 flex-1 flex flex-col">
+                <div className="h-6 bg-slate-200 rounded w-3/4"></div>
+                <div className="space-y-2 mt-4">
+                  <div className="h-4 bg-slate-200 rounded w-full"></div>
+                  <div className="h-4 bg-slate-200 rounded w-5/6"></div>
+                </div>
+                <div className="flex gap-4 pt-4 mt-auto">
+                  <div className="flex-1 h-12 bg-slate-200 rounded-xl"></div>
+                  <div className="flex-1 h-12 bg-slate-200 rounded-xl"></div>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : categories.map((category) => {
           const image = getCategoryImage(category);
           return (
             <div

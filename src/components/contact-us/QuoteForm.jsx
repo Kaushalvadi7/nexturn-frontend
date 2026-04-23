@@ -390,10 +390,11 @@ const QuoteForm = () => {
                           Upload Technical Drawing
                         </label>
                       <label
+                        htmlFor="quote-form-file-upload"
                         className="border-2 border-dashed border-slate-200 rounded-xl p-3 text-center hover:border-accent transition-colors group cursor-pointer bg-white block"
-                        onClick={() => fileInputRef.current?.click()}
                       >
                         <input
+                          id="quote-form-file-upload"
                           ref={fileInputRef}
                           type="file"
                           accept=".pdf,.jpg,.jpeg"
