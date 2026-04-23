@@ -204,10 +204,11 @@ const ProductDetails = () => {
               className="w-full h-full flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <WatermarkImage
                 src={selectedImage}
                 alt={product.name}
                 className="max-w-[95vw] max-h-[85vh] md:max-h-[90vh] object-contain rounded-lg md:rounded-2xl shadow-2xl animate-in slide-in-from-bottom-8 duration-500"
+                watermarkText="NEXTURN COMPONENTCRAFT"
               />
             </div>
           </div>,
