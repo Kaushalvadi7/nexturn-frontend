@@ -5,6 +5,7 @@ const WatermarkImage = ({
   alt,
   className,
   watermarkText = "NEXTURN COMPONENTCRAFT",
+  objectFit = "cover",
 }) => {
   const canvasRef = useRef(null);
   const imgRef = useRef(null);
@@ -85,7 +86,7 @@ const WatermarkImage = ({
         style={{
           width: "100%",
           height: "100%",
-          objectFit: "cover",
+          objectFit,
           display: isLoaded ? "block" : "none",
         }}
         title={alt}

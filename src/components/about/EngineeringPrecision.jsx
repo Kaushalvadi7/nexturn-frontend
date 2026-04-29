@@ -70,7 +70,7 @@ const EngineeringPrecision = () => {
             <div className="space-y-5 text-slate-600 font-medium leading-relaxed text-lg md:text-[21px]">
               <p className="reveal-on-scroll reveal-hidden">
                 <span className="text-slate-900 font-bold">
-                  Nexturn ComponentCraft Pvt. Ltd.
+                  Nexturn Componentraft Pvt. Ltd.
                 </span>{" "}
                 was founded with a singular mission: to bridge the gap between
                 Indian manufacturing excellence and international quality
