@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ScrollToTop from "./components/common/ScrollToTop";
 import MetaTags from "./components/common/MetaTags";
 import MainLayout from "./layouts/MainLayout";
@@ -33,11 +35,26 @@ import GoogleTranslate from "./components/common/GoogleTranslate";
 import { ToastProvider } from "./contexts/ToastContext";
 import { Analytics } from "@vercel/analytics/react";
 
+function GoogleAnalyticsPageTracker() {
+  const location = useLocation();
+  const measurementId = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
+
+  useEffect(() => {
+    if (!measurementId || typeof window.gtag !== "function") return;
+    window.gtag("config", measurementId, {
+      page_path: `${location.pathname}${location.search}${location.hash}`,
+    });
+  }, [location, measurementId]);
+
+  return null;
+}
+
 function App() {
   return (
     <ToastProvider>
       <Router>
         <Analytics />
+        <GoogleAnalyticsPageTracker />
         <GoogleTranslate />
         <ScrollToTop />
         <MetaTags />
