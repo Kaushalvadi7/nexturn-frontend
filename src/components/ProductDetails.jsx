@@ -36,7 +36,6 @@ const ProductDetails = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Prevent body scroll when modal is open
   useEffect(() => {
     if (selectedImage) {
       document.body.style.overflow = "hidden";
@@ -205,10 +204,11 @@ const ProductDetails = () => {
               className="w-full h-full flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* ✅ w-auto h-auto lets image render at its actual/natural size */}
               <WatermarkImage
                 src={selectedImage}
                 alt={product.name}
-                className="max-w-[95vw] max-h-[85vh] md:max-h-[90vh] object-contain rounded-lg md:rounded-2xl shadow-2xl animate-in slide-in-from-bottom-8 duration-500"
+                className="w-auto h-auto max-w-[95vw] max-h-[90vh] rounded-lg md:rounded-2xl shadow-2xl animate-in slide-in-from-bottom-8 duration-500"
                 watermarkText="NEXTURN COMPONENTCRAFT"
               />
             </div>

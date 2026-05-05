@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 const WatermarkImage = ({
   src,
   alt,
-  className,
+  className = "w-full h-full object-cover", // ✅ sensible default
   watermarkText = "NEXTURN COMPONENTCRAFT",
   objectFit = "cover",
 }) => {
@@ -11,7 +11,6 @@ const WatermarkImage = ({
   const imgRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Function to draw the image to canvas
   const draw = (withWatermark = false) => {
     const canvas = canvasRef.current;
     const img = imgRef.current;
@@ -21,7 +20,6 @@ const WatermarkImage = ({
     canvas.width = img.naturalWidth;
     canvas.height = img.naturalHeight;
 
-    // Draw base image
     ctx.drawImage(img, 0, 0);
 
     if (withWatermark) {
@@ -53,7 +51,7 @@ const WatermarkImage = ({
     img.onload = () => {
       imgRef.current = img;
       setIsLoaded(true);
-      draw(false); // Draw clean version initially
+      draw(false);
     };
   }, [src]);
 
@@ -66,7 +64,6 @@ const WatermarkImage = ({
     document.body.removeChild(link);
   };
 
-  // Intercept right-click save and force logo download instead
   const handleContextMenu = (event) => {
     event.preventDefault();
     draw(true);
@@ -76,25 +73,22 @@ const WatermarkImage = ({
 
   return (
     <div
-      className={`overflow-hidden ${className}`}
       onContextMenu={handleContextMenu}
       onDragStart={(event) => event.preventDefault()}
     >
-      {/* The Canvas hides the 'src' URL from Inspect Element */}
       <canvas
         ref={canvasRef}
+        className={className}
         style={{
-          width: "100%",
-          height: "100%",
           objectFit,
           display: isLoaded ? "block" : "none",
         }}
         title={alt}
       />
 
-      {/* Loading state to prevent white box */}
+      {/* Loading placeholder matches same sizing as canvas */}
       {!isLoaded && (
-        <div className="w-full h-full bg-slate-100 animate-pulse" />
+        <div className={`bg-slate-100 animate-pulse ${className}`} />
       )}
     </div>
   );
