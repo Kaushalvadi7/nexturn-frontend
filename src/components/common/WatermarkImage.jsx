@@ -3,9 +3,10 @@ import { useEffect, useState, useRef } from "react";
 const WatermarkImage = ({
   src,
   alt,
-  className = "w-full h-full object-cover", // ✅ sensible default
+  className = "w-full h-full object-cover",
   watermarkText = "NEXTURN COMPONENTCRAFT",
   objectFit = "cover",
+  ...rest
 }) => {
   const canvasRef = useRef(null);
   const imgRef = useRef(null);
@@ -75,6 +76,7 @@ const WatermarkImage = ({
     <div
       onContextMenu={handleContextMenu}
       onDragStart={(event) => event.preventDefault()}
+      {...rest}
     >
       <canvas
         ref={canvasRef}
@@ -86,7 +88,6 @@ const WatermarkImage = ({
         title={alt}
       />
 
-      {/* Loading placeholder matches same sizing as canvas */}
       {!isLoaded && (
         <div className={`bg-slate-100 animate-pulse ${className}`} />
       )}

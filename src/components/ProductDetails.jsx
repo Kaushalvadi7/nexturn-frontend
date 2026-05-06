@@ -28,6 +28,17 @@ const getProductImages = (product) => {
 const ProductDetails = () => {
   const location = useLocation();
   const product = location.state?.material || null;
+  const selectedCategoryId =
+    location.state?.categoryId ??
+    product?.category_id ??
+    product?.category?.id ??
+    null;
+  const selectedCategoryName =
+    location.state?.categoryName ?? product?.category?.name ?? "";
+  const productListState = {
+    categoryId: selectedCategoryId,
+    categoryName: selectedCategoryName,
+  };
 
   const images = useMemo(() => getProductImages(product), [product]);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -88,6 +99,7 @@ const ProductDetails = () => {
           </span>
           <Link
             to="/product-list"
+            state={productListState}
             className="hover:text-[#1E3A5F] transition-colors flex-shrink-0"
           >
             Products
@@ -128,18 +140,18 @@ const ProductDetails = () => {
               Product Showcase
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            <div className="columns-1 sm:columns-2 md:columns-3 gap-6 md:gap-8 space-y-6 md:space-y-8">
               {images.length > 0 ? (
                 images.map((img, idx) => (
                   <div
                     key={`${img}-${idx}`}
                     onClick={() => setSelectedImage(img)}
-                    className="group cursor-pointer bg-white rounded-2xl md:rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-2xl transition-all duration-500 relative aspect-square"
+                    className="group cursor-pointer bg-white rounded-2xl md:rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-2xl transition-all duration-500 relative break-inside-avoid mb-6 md:mb-8"
                   >
                     <WatermarkImage
                       src={img}
                       alt={`${product.name} ${idx + 1}`}
-                      className="w-full h-full transition-transform duration-700"
+                      className="w-full h-auto transition-transform duration-700"
                       watermarkText="NEXTURN COMPONENTCRAFT"
                       objectFit="contain"
                     />
@@ -176,6 +188,7 @@ const ProductDetails = () => {
             </Link>
             <Link
               to="/product-list"
+              state={productListState}
               className="px-10 py-5 bg-white text-[#1E3A5F] border border-slate-200 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-slate-50 transition-all flex items-center justify-center gap-4"
             >
               View More Products

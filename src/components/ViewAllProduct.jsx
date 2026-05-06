@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
 import { getCategories, getProducts } from "../lib/api";
 import WatermarkImage from "./common/WatermarkImage";
@@ -57,10 +58,23 @@ const ViewAllProduct = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedImage]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -232,11 +246,12 @@ const ViewAllProduct = () => {
         ) : category && (
           <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden mb-20">
             <div className="flex flex-col lg:flex-row min-h-[700px]">
-              <div className="lg:w-[45%] relative group bg-white flex items-start justify-start p-6 lg:p-10 border-r border-slate-50">
+              <div className="lg:w-[45%] relative group bg-white flex items-center justify-center p-6 lg:p-10 border-r border-slate-50">
                 <WatermarkImage
                   src={getCategoryImage(category)}
                   alt={category.name}
-                  className="max-w-full h-auto object-contain object-left-top rounded-2xl transition-transform duration-700 group-hover:scale-105"
+                  onClick={() => setSelectedImage(getCategoryImage(category))}
+                  className="w-full h-auto max-h-[620px] object-contain object-center rounded-2xl transition-transform duration-700 group-hover:scale-[1.02] cursor-zoom-in"
                   watermarkText="NEXTURN COMPONENTCRAFT"
                 />
 
@@ -491,7 +506,12 @@ const ViewAllProduct = () => {
                   <div className="pt-4 mt-auto">
                     <Link
                       to="/product-details"
-                      state={{ material: product }}
+                      state={{
+                        material: product,
+                        categoryId:
+                          product.category_id ?? product.category?.id ?? null,
+                        categoryName: product.category?.name ?? "",
+                      }}
                       className="w-full bg-[#1b365d] hover:bg-[#12243d] text-white py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-lg cursor-pointer flex items-center justify-center gap-2"
                     >
                       <span className="material-symbols-outlined text-sm">
@@ -506,6 +526,36 @@ const ViewAllProduct = () => {
           })}
         </div>
       </section>
+      {selectedImage &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-10 animate-in fade-in zoom-in duration-300"
+            onClick={() => setSelectedImage(null)}
+          >
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="fixed top-6 right-6 md:top-10 md:right-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-3 transition-all z-[10000] backdrop-blur-xl border border-white/10 flex items-center justify-center group shadow-2xl"
+              aria-label="Close image preview"
+            >
+              <span className="material-symbols-outlined text-2xl font-bold group-hover:rotate-90 transition-transform duration-300">
+                close
+              </span>
+            </button>
+
+            <div
+              className="w-full h-full flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <WatermarkImage
+                src={selectedImage}
+                alt={category?.name || "Category image"}
+                className="w-auto h-auto max-w-[95vw] max-h-[90vh] rounded-xl shadow-2xl"
+                watermarkText="NEXTURN COMPONENTCRAFT"
+              />
+            </div>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 };
