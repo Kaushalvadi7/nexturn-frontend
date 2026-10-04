@@ -124,9 +124,17 @@ export const resolveMapQuery = (location) => {
   return value.replace(/\s+/g, ' ').trim();
 };
 
-export const buildMapEmbed = (location, zoom = 14) => {
-  const query = resolveMapQuery(location);
+const isCoordinateQuery = (query) => /^-?\d+(?:\.\d+)?\s*,\s*-?\d+(?:\.\d+)?$/.test(String(query || '').trim());
+
+export const buildMapEmbed = (location, zoom = 14, businessName = '') => {
+  let query = resolveMapQuery(location);
   if (!query) return '';
+  // A bare address inside a shared industrial estate resolves as an area
+  // search on Google's free embed API, surfacing nearby businesses too.
+  // Anchoring the query to the exact business name pins just this one.
+  if (businessName && !isCoordinateQuery(query)) {
+    query = `${businessName}, ${query}`;
+  }
   return `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=${encodeURIComponent(String(zoom))}&output=embed`;
 };
 

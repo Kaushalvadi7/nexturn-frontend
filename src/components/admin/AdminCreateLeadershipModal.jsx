@@ -1,4 +1,5 @@
 import React from "react";
+import { countryOptions } from "../../constants/countryOptions";
 
 const AdminCreateLeadershipModal = ({
   isOpen,
@@ -148,6 +149,24 @@ const AdminCreateLeadershipModal = ({
                   rows={4}
                   className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 text-sm font-medium text-black outline-none focus:bg-white focus:border-blue-200 focus:ring-4 focus:ring-blue-500/10 transition-all resize-none"
                 />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs font-black text-black/50 uppercase tracking-widest block pl-1">
+                  Country Representative
+                </label>
+                <select
+                  value={form.countryRepresentative || ""}
+                  onChange={(e) => onChange("countryRepresentative", e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 text-sm font-black text-black outline-none focus:bg-white focus:border-blue-200 focus:ring-4 focus:ring-blue-500/10 transition-all"
+                >
+                  <option value="">Select country (optional)</option>
+                  {countryOptions.map((country) => (
+                    <option key={country.code} value={country.name}>
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>

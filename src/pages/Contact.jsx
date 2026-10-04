@@ -5,6 +5,7 @@ import ContactOptions from '../components/contact-us/ContactOptions';
 import QuoteForm from '../components/contact-us/QuoteForm';
 import BusinessInfo from '../components/contact-us/BusinessInfo';
 import MapSection from '../components/contact-us/MapSection';
+import ContactExpertiseLeadership from '../components/contact-us/ContactExpertiseLeadership';
 import ContactFAQ from '../components/contact-us/ContactFAQ';
 import ForSeo from '../components/ForSeo';
 
@@ -45,6 +46,11 @@ const Contact = () => {
         {/* Map and Location Facility Section */}
         <div id="map" className="scroll-mt-16">
           <MapSection />
+        </div>
+
+        {/* Engineering Expertise & Leadership */}
+        <div id="expertise-leadership" className="scroll-mt-16">
+          <ContactExpertiseLeadership />
         </div>
 
         {/* Frequently Asked Questions */}

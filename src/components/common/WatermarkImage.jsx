@@ -76,6 +76,7 @@ const WatermarkImage = ({
     <div
       onContextMenu={handleContextMenu}
       onDragStart={(event) => event.preventDefault()}
+      style={{ display: "contents" }}
       {...rest}
     >
       <canvas

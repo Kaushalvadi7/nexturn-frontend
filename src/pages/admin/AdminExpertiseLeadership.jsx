@@ -3,6 +3,7 @@ import AdminNavbar from '../../components/admin/AdminNavbar';
 import { useToast } from '../../contexts/ToastContext';
 import AdminDeleteModal from '../../components/admin/AdminDeleteModal';
 import AdminCreateLeadershipModal from '../../components/admin/AdminCreateLeadershipModal';
+import { countryOptions } from '../../constants/countryOptions';
 import {
   createCompanyEmployeeForm,
   deleteCompanyEmployee,
@@ -24,6 +25,7 @@ const AdminExpertiseLeadership = () => {
     role: "",
     education: "",
     experience: "",
+    countryRepresentative: "",
     imageFile: null,
     imagePreview: "",
   });
@@ -45,6 +47,7 @@ const AdminExpertiseLeadership = () => {
           role: row.role || "",
           education: row.education || "",
           experience: row.experience || "",
+          countryRepresentative: row.country_representative || "",
           image: row.image || null,
           imageFile: null,
           imagePreview: null,
@@ -82,6 +85,7 @@ const AdminExpertiseLeadership = () => {
       role: "",
       education: "",
       experience: "",
+      countryRepresentative: "",
       imageFile: null,
       imagePreview: "",
     });
@@ -122,6 +126,9 @@ const AdminExpertiseLeadership = () => {
     formData.append("role", String(createForm.role || "").trim());
     formData.append("education", String(createForm.education || "").trim());
     formData.append("experience", String(createForm.experience || "").trim());
+    if (String(createForm.countryRepresentative || "").trim()) {
+      formData.append("country_representative", String(createForm.countryRepresentative || "").trim());
+    }
     if (createForm.imageFile) {
       formData.append("image", createForm.imageFile);
     }
@@ -154,6 +161,7 @@ const AdminExpertiseLeadership = () => {
       role: row.role || "",
       education: row.education || "",
       experience: row.experience || "",
+      countryRepresentative: row.country_representative || "",
       image: row.image || null,
       imageFile: null,
       imagePreview: null,
@@ -218,6 +226,13 @@ const AdminExpertiseLeadership = () => {
     formData.append("role", role);
     formData.append("education", String(leader.education || ""));
     formData.append("experience", String(leader.experience || ""));
+
+    if (String(leader.countryRepresentative || "").trim()) {
+      formData.append("country_representative", String(leader.countryRepresentative || "").trim());
+    } else {
+      formData.append("country_representative", ""); // Send empty to clear it explicitly
+    }
+
     if (leader.imageFile) {
       formData.append("image", leader.imageFile);
     }
@@ -364,13 +379,28 @@ const AdminExpertiseLeadership = () => {
                     </div>
                     <div className="space-y-2">
                        <label className="text-xs font-black text-[#1b365d] uppercase tracking-widest ml-1 opacity-70">DESIGNATION / ROLE</label>
-                       <input 
-                        type="text" 
+                       <input
+                        type="text"
                         value={leader.role}
                         placeholder="Enter Managing Director"
                         onChange={(e) => updateLeader(leader.id, 'role', e.target.value)}
                         className="w-full bg-white border-b-2 border-slate-100 px-1 py-2 text-xs font-black text-blue-600 uppercase tracking-widest outline-none focus:border-blue-400 transition-all placeholder:text-slate-200"
                        />
+                    </div>
+                    <div className="space-y-2">
+                       <label className="text-xs font-black text-[#1b365d] uppercase tracking-widest ml-1 opacity-70">COUNTRY REPRESENTATIVE</label>
+                       <select
+                        value={leader.countryRepresentative || ""}
+                        onChange={(e) => updateLeader(leader.id, 'countryRepresentative', e.target.value)}
+                        className="w-full bg-white border-b-2 border-slate-100 px-1 py-2 text-xs font-black text-slate-600 outline-none focus:border-blue-400 transition-all"
+                       >
+                        <option value="">Select country (optional)</option>
+                        {countryOptions.map((country) => (
+                          <option key={country.code} value={country.name}>
+                            {country.name}
+                          </option>
+                        ))}
+                       </select>
                     </div>
                   </div>
 
